@@ -10,17 +10,33 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 
 ## Installation
 
-Copy a skill into your Cursor skills directory:
+Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other supported tools:
 
 ```bash
-# Personal (available in all projects)
-mkdir -p ~/.cursor/skills
-cp -r docker ~/.cursor/skills/
+# From a clone of this repo
+./install.sh --list
+./install.sh --all                          # auto-detect installed tools
+./install.sh --all -g -y                    # global install, no prompts
+./install.sh -s docker -a cursor -a claude-code -a opencode
 
-# Or per-project
-mkdir -p .cursor/skills
-cp -r docker .cursor/skills/
+# One-liner (downloads and runs the installer)
+curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.sh | bash -s -- --all -y
 ```
+
+Options:
+
+| Flag | Description |
+|------|-------------|
+| `--list` | Show skills in this repo |
+| `--list-agents` | Show supported tools and install paths |
+| `-s, --skill NAME` | Install specific skill(s) |
+| `--all` | Install every skill |
+| `-a, --agent NAME` | Target tool (`cursor`, `claude-code`, `opencode`, `codex`, `windsurf`, … or `all`) |
+| `-g, --global` | Install to user home dirs instead of the current project |
+| `--copy` | Copy files instead of symlinking (default: symlink to this repo) |
+| `-y, --yes` | Skip confirmation prompts |
+
+By default the script symlinks skills from this repo so updates here are picked up immediately. Use `--copy` when installing globally without keeping a local clone.
 
 Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills from `~/.cursor/skills/` (personal) and `.cursor/skills/` (project).
 
