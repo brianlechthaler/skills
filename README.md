@@ -7,6 +7,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | Skill | Description |
 |-------|-------------|
 | [docker](docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
+| [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
 | [github-publish](github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
