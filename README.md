@@ -66,6 +66,10 @@ Use `--as-rule` when a tool should load skill instructions as persistent rules i
 
 Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills from `~/.cursor/skills/` (personal) and `.cursor/skills/` (project).
 
+## Usage
+
+See **[USAGE.md](USAGE.md)** for a per-tool guide covering Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, Gemini CLI, and more — including how to use skills vs rules (`--as-rule`), verify installs, and update or remove them.
+
 ## Adding a Skill
 
 1. Create a directory named after the skill (lowercase, hyphens).
