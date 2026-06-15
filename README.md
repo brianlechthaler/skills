@@ -12,6 +12,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
+| [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 
 ## Installation
 
