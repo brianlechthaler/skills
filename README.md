@@ -24,6 +24,10 @@ Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other su
 ./install.sh --all -g -y                    # global install, no prompts
 ./install.sh -s docker -a cursor -a claude-code -a opencode
 
+# Install as always-on / intelligently-applied rules instead of skills
+./install.sh -s test -a cursor --as-rule
+./install.sh --all -a claude-code -a windsurf --as-rule -g -y
+
 # One-liner (downloads and runs the installer)
 curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.sh | bash -s -- --all -y
 ```
@@ -39,9 +43,12 @@ Options:
 | `-a, --agent NAME` | Target tool (`cursor`, `claude-code`, `opencode`, `codex`, `windsurf`, … or `all`) |
 | `-g, --global` | Install to user home dirs instead of the current project |
 | `--copy` | Copy files instead of symlinking (default: symlink to this repo) |
+| `--as-rule` | Install as AI rules instead of skills (Cursor `.mdc`, Claude `.claude/rules/`, Windsurf, `AGENTS.md`, etc.) |
 | `-y, --yes` | Skip confirmation prompts |
 
 By default the script symlinks skills from this repo so updates here are picked up immediately. Use `--copy` when installing globally without keeping a local clone.
+
+Use `--as-rule` when a tool should load skill instructions as persistent rules instead of on-demand skills. Cursor rules are written as `.cursor/rules/<skill>.mdc` with intelligent activation; Claude Code uses `.claude/rules/<skill>.md`; Windsurf uses `.windsurf/rules/<skill>.md`; OpenCode and Codex append sections to `AGENTS.md`; and other agents use their documented rules directories (see `./install.sh --list-agents`). Re-running `--as-rule` updates existing rule sections safely.
 
 Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills from `~/.cursor/skills/` (personal) and `.cursor/skills/` (project).
 
