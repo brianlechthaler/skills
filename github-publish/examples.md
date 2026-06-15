@@ -6,28 +6,35 @@
 cd my-project
 git init
 echo "node_modules/" > .gitignore
-git add .
-git commit -m "Initial commit"
 
-gh repo create my-project --public --source=. --remote=origin --push
+# Create GitHub repo and remote — do not push project commits to main yet
+gh repo create my-project --public --source=. --remote=origin
 
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
+if [ "$DEFAULT" = "null" ] || [ -z "$DEFAULT" ]; then DEFAULT=main; fi
+
 git fetch origin
-git checkout -b feat/user-auth origin/$DEFAULT
-# ... make changes ...
-git add src/
-git commit -m "Add user authentication with session cookies"
+if ! git rev-parse --verify "origin/$DEFAULT" >/dev/null 2>&1; then
+  git checkout --orphan "$DEFAULT"
+  git reset --hard
+  git commit --allow-empty -m "Initial commit"
+  git push -u origin "$DEFAULT"
+fi
+
+# All deliverables go on a feature branch and merge via PR
+git checkout -b feat/initial-project origin/$DEFAULT
+git add .
+git commit -m "Add initial project scaffold"
 git push -u origin HEAD
 
 gh pr create --draft \
-  --title "Add user authentication" \
+  --title "Add initial project scaffold" \
   --body "$(cat <<'EOF'
 ## Summary
-- Add login/logout endpoints and session middleware
+- Add project scaffold and configuration
 
 ## Test plan
 - [ ] `npm test` passes locally
-- [ ] Manual login/logout smoke test
 - [ ] CI passes
 
 EOF
@@ -95,13 +102,35 @@ gh pr merge --merge --delete-branch
 
 ```bash
 git remote -v   # confirm no origin
-gh repo create my-existing-app --public --source=. --remote=origin --push
+gh repo create my-existing-app --public --source=. --remote=origin
+
+DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
+if [ "$DEFAULT" = "null" ] || [ -z "$DEFAULT" ]; then DEFAULT=main; fi
+
+git fetch origin
+if ! git rev-parse --verify "origin/$DEFAULT" >/dev/null 2>&1; then
+  git stash push -u -m "publish-work"
+  git checkout --orphan "$DEFAULT"
+  git reset --hard
+  git commit --allow-empty -m "Initial commit"
+  git push -u origin "$DEFAULT"
+  git checkout -b feat/publish-existing-work origin/$DEFAULT
+  git stash pop
+else
+  git checkout -b feat/publish-existing-work origin/$DEFAULT
+fi
+
+git add -A
+git commit -m "Add existing application code"
+git push -u origin HEAD
+gh pr create --draft --title "Add existing application code" --body "..."
 ```
 
 ## Private repo (only when user asks)
 
 ```bash
-gh repo create internal-tool --private --source=. --remote=origin --push
+gh repo create internal-tool --private --source=. --remote=origin
+# Bootstrap empty default branch if needed, then feature branch + PR (same as public)
 ```
 
 ## Resume work on an existing branch

@@ -16,7 +16,7 @@ description: >-
 1. **All changes should be tracked in git** — no uncommitted deliverables at the end of a task.
 2. **Repositories should be published to GitHub publicly unless otherwise specified** — use `--private` only when the user explicitly asks.
 3. **Use the GitHub CLI (`gh`)** to create and interact with repositories, pull requests, and related GitHub resources.
-4. **Never commit directly to the default branch** — all deliverables live on a feature branch named after the changes and based on the default branch.
+4. **Never commit directly to the default branch** — all deliverables live on a feature branch named after the changes and based on the default branch. The **only** exception is bootstrapping an empty default branch when the remote has none yet (see **Bootstrap Default Branch**).
 5. **When you finish doing something you're told to do**, commit and push to that feature branch, open a draft PR, complete every PR todo item, run local and CI tests, then ask the user for approval before merging.
 
 These rules apply to every task unless the user explicitly opts out (e.g. "don't commit", "keep this local", "private repo", "don't merge").
@@ -39,16 +39,19 @@ Run at the start of work when the directory is not yet on GitHub.
 
 ```bash
 git init
+# Add a .gitignore appropriate to the stack (no project commit yet)
 gh repo create <repo-name> --public --source=. --remote=origin
 ```
 
-Use the current directory name for `<repo-name>` unless the user specifies otherwise. Add a `.gitignore` appropriate to the stack before the first commit.
+Use the current directory name for `<repo-name>` unless the user specifies otherwise. Do **not** push project commits to the default branch — bootstrap an empty default branch first (see **Bootstrap Default Branch**), then put all work on a feature branch and open a PR.
 
 ### Existing git repo, no remote
 
 ```bash
-gh repo create <repo-name> --public --source=. --remote=origin --push
+gh repo create <repo-name> --public --source=. --remote=origin
 ```
+
+Do **not** use `--push` here unless the remote default branch already exists and matches your intended base. After adding the remote, bootstrap the default branch if missing, then push work from a feature branch via PR.
 
 ### Existing remote
 
@@ -60,6 +63,45 @@ gh repo view --json visibility,url
 ```
 
 Do not recreate the repo if a valid `origin` already points to GitHub.
+
+### Bootstrap Default Branch
+
+When the GitHub repository has **no default branch yet** (common right after `gh repo create` on an empty repo), create `main` (or the repo's configured default) with a single **empty** commit, push it, then do all real work on a feature branch merged via PR. That keeps every project commit on the default branch behind a PR — the empty bootstrap is the only direct push to the default branch, because GitHub requires at least one branch before PRs can target it.
+
+**Detect a missing remote default branch:**
+
+```bash
+git fetch origin
+DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name 2>/dev/null || echo main)
+# defaultBranchRef is null on a brand-new empty repo; fall back to main
+if [ "$DEFAULT" = "null" ] || [ -z "$DEFAULT" ]; then DEFAULT=main; fi
+
+if ! git rev-parse --verify "origin/$DEFAULT" >/dev/null 2>&1; then
+  NEEDS_BOOTSTRAP=1
+fi
+```
+
+**Bootstrap empty default branch** (only when `NEEDS_BOOTSTRAP=1`):
+
+```bash
+# Stash or keep uncommitted work aside — do not include it in the bootstrap commit
+git stash push -u -m "publish-work"   # when you have uncommitted changes
+
+git checkout --orphan "$DEFAULT"
+git reset --hard
+git commit --allow-empty -m "Initial commit"
+git push -u origin "$DEFAULT"
+
+git checkout -b <type>/<short-description>
+git stash pop   # when you stashed above
+```
+
+Rules for bootstrap:
+
+- The bootstrap commit must be **empty** (`git commit --allow-empty`) — no project files on the default branch.
+- Push **only** this empty commit directly to the default branch; every later commit reaches the default branch through a merged PR.
+- After bootstrap, create the feature branch from `origin/$DEFAULT` and commit all deliverables there.
+- If local commits already exist on the wrong branch before bootstrap, move them to the feature branch after bootstrap (stash, cherry-pick, or new branch from `origin/$DEFAULT`) — never rewrite the bootstrap commit on the remote.
 
 ### Private repos
 
@@ -88,6 +130,8 @@ DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 
 Fall back to `main` only when `gh` is unavailable and `git symbolic-ref refs/remotes/origin/HEAD` does not resolve.
 
+If `origin/$DEFAULT` does not exist, run **Bootstrap Default Branch** before creating the feature branch.
+
 ### 2. Name the branch after the changes
 
 Use a descriptive prefix and short slug derived from the work:
@@ -108,6 +152,7 @@ CURRENT=$(git branch --show-current)
 
 | Situation | Action |
 |-----------|--------|
+| Remote default branch missing | Bootstrap empty `origin/$DEFAULT` first, then create feature branch |
 | On the default branch (with or without uncommitted changes) | Create a new branch from `origin/$DEFAULT`, move work there, commit |
 | On a feature branch that matches the work and is based on current `origin/$DEFAULT` | Keep the branch; rebase onto `origin/$DEFAULT` if behind |
 | On a feature branch with the wrong name, wrong base, or unrelated history | Create `origin/$DEFAULT`-based branch with the correct name; move only this task's commits or uncommitted changes there — do not pile unrelated work onto one branch |
@@ -153,6 +198,8 @@ git status -sb
 ```
 
 ### 2. Ensure the feature branch
+
+If `origin/$DEFAULT` does not exist, run **Bootstrap Default Branch** first.
 
 Follow **Feature Branch Rules** above. Confirm:
 
@@ -291,8 +338,8 @@ Copy and track while finishing a task:
 Publish workflow:
 - [ ] All deliverables tracked in git (nothing important left untracked)
 - [ ] Remote exists on GitHub (public unless user specified private)
-- [ ] Default branch identified
-- [ ] Feature branch named after changes and based on default branch (not committing to main)
+- [ ] Default branch identified (bootstrapped with empty commit if remote had none)
+- [ ] Feature branch named after changes and based on default branch (not committing deliverables to main)
 - [ ] Changes committed with a clear message
 - [ ] Branch pushed to origin
 - [ ] Draft PR opened (or existing PR updated) with summary and test plan
@@ -310,6 +357,7 @@ Publish workflow:
 |------|---------|
 | Default branch name | `gh repo view --json defaultBranchRef -q .defaultBranchRef.name` |
 | Create public repo from cwd | `gh repo create NAME --public --source=. --remote=origin` |
+| Bootstrap empty default branch | `git checkout --orphan main && git commit --allow-empty -m "Initial commit" && git push -u origin main` |
 | Branch from default | `git checkout -b feat/name origin/$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)` |
 | Open draft PR | `gh pr create --draft --title "..." --body "..."` |
 | View PR | `gh pr view --web` or `gh pr view --json body,url` |
@@ -324,7 +372,8 @@ Publish workflow:
 | Avoid | Do instead |
 |-------|------------|
 | Leaving completed work uncommitted | Commit on a feature branch before reporting done |
-| Pushing directly to `main` | Branch from default → commit → push → draft PR |
+| Pushing project commits directly to `main` | Bootstrap empty `main` once if missing; branch → commit → push → draft PR |
+| Using `--push` on a new empty remote | Add remote without `--push`; bootstrap empty default branch, then feature-branch PR |
 | Working on a misnamed or stale-base branch | Create/rename a branch from `origin/$DEFAULT` named after the changes |
 | Creating private repos by default | `--public` unless user says private |
 | Using web UI when `gh` suffices | Prefer `gh` for repos, PRs, checks |
