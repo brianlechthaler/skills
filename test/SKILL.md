@@ -1,13 +1,13 @@
 ---
-name: test-and-lint
+name: test
 description: >-
-  Enforce TDD, 100% test coverage on generated code, and linting before commits.
+  Enforce TDD and 100% test coverage on generated code before commits.
   Use when writing, modifying, or generating code; before staging or committing;
   when the user asks to implement features, fix bugs, refactor, or add tests;
-  or when discussing test coverage, linting, or code quality gates.
+  or when discussing test coverage, TDD, or unit tests.
 ---
 
-# Test and Lint
+# Test
 
 ## Core Requirements
 
@@ -16,10 +16,10 @@ When applicable to the work at hand:
 - All generated code should have **100% test coverage**
 - Always use **test driven development (TDD)**
 - Avoid committing untested code
-- Always **lint** code
-- Avoid committing code that has not been linted
 
-These are hard gates. Do not mark work complete, stage changes, or commit until both gates pass.
+These are hard gates. Do not mark work complete, stage changes, or commit until tests pass and coverage is 100% on generated/changed code.
+
+For linting and formatting gates, follow the [lint](../lint/SKILL.md) skill before commit.
 
 ## When This Applies
 
@@ -27,10 +27,10 @@ These are hard gates. Do not mark work complete, stage changes, or commit until 
 |---------|----------------|
 | New or changed source code (`.ts`, `.py`, `.go`, `.rs`, etc.) | Pure documentation (`.md`) with no code |
 | Bug fixes and refactors in testable modules | Generated lockfiles or vendored third-party code |
-| New features, APIs, CLI commands, libraries | Repo has no test/lint tooling and user explicitly opts out |
-| User asks to commit or open a PR | Config-only edits with no project linter configured |
+| New features, APIs, CLI commands, libraries | Repo has no test tooling and user explicitly opts out |
+| User asks to commit or open a PR | Config-only edits with no project test runner configured |
 
-When unsure, default to **test + lint**. If tooling is missing, add minimal project-standard setup before writing production code.
+When unsure, default to **TDD + coverage**. If tooling is missing, add minimal project-standard setup before writing production code.
 
 ## TDD Workflow
 
@@ -60,17 +60,6 @@ After tests pass, verify **100% coverage on all code you generated or changed**:
 
 Report coverage briefly when finishing (e.g. "100% on `src/foo.ts`").
 
-## Lint Gate
-
-Before staging or committing:
-
-1. Detect project linters from config files (`eslint`, `ruff`, `golangci-lint`, `clippy`, `prettier`, etc.) and scripts (`npm run lint`, `make lint`).
-2. Run linters in **check mode** (not auto-fix-only) on changed files at minimum; run project-wide lint when that is the repo convention.
-3. Fix all violations. Re-run until clean.
-4. If the project has a formatter, run format check (`prettier --check`, `ruff format --check`, `cargo fmt --check`) and fix before commit.
-
-Prefer auto-fix (`eslint --fix`, `ruff check --fix`, `gofmt`) then re-run check mode to confirm.
-
 ## Execution Order
 
 For each code change cycle:
@@ -81,39 +70,37 @@ For each code change cycle:
 3. Refactor if needed             ← TDD Refactor
 4. Run unit tests                 → must pass
 5. Run coverage on changed code   → must be 100%
-6. Run linter(s)                  → must pass
+6. Run linter(s)                  → see lint skill
 7. Only then: stage / commit / PR
 ```
 
-If the [docker](../docker/SKILL.md) skill applies, run tests and linters **inside the container** — never skip gates because the host lacks tooling.
+If the [docker](../docker/SKILL.md) skill applies, run tests **inside the container** — never skip gates because the host lacks tooling.
 
 ## Pre-Commit Checklist
 
 Copy and complete before any commit that includes code:
 
 ```
-Quality gates:
+Test gates:
 - [ ] Tests written first (TDD)
 - [ ] All tests pass
 - [ ] 100% coverage on generated/changed code
-- [ ] Linter(s) pass on changed code
-- [ ] Formatter check passes (if configured)
 ```
 
-If the user asks to commit and any box is unchecked, run the missing step first. Do not commit untested or unlinted code.
+If the user asks to commit and any box is unchecked, run the missing step first. Do not commit untested code.
 
 ## Detecting Project Tooling
 
-Inspect the repo before the first test or lint run:
+Inspect the repo before the first test run:
 
-| Signal | Tests | Coverage | Lint |
-|--------|-------|----------|------|
-| `package.json` scripts | `npm test`, `pnpm test` | `vitest --coverage`, `jest --coverage` | `npm run lint`, `eslint`, `prettier --check` |
-| `pyproject.toml` / `pytest.ini` | `pytest` | `pytest --cov --cov-fail-under=100` | `ruff check`, `muff`, `mypy` |
-| `go.mod` | `go test ./...` | `go test -coverprofile` + inspect | `golangci-lint run`, `go vet` |
-| `Cargo.toml` | `cargo test` | `cargo llvm-cov` / `cargo tarpaulin` | `cargo clippy`, `cargo fmt --check` |
-| `Makefile` | `make test` | `make coverage` if present | `make lint` |
-| Existing CI (`.github/workflows/`) | Mirror CI test command | Mirror CI coverage flags | Mirror CI lint command |
+| Signal | Tests | Coverage |
+|--------|-------|----------|
+| `package.json` scripts | `npm test`, `pnpm test` | `vitest --coverage`, `jest --coverage` |
+| `pyproject.toml` / `pytest.ini` | `pytest` | `pytest --cov --cov-fail-under=100` |
+| `go.mod` | `go test ./...` | `go test -coverprofile` + inspect |
+| `Cargo.toml` | `cargo test` | `cargo llvm-cov` / `cargo tarpaulin` |
+| `Makefile` | `make test` | `make coverage` if present |
+| Existing CI (`.github/workflows/`) | Mirror CI test command | Mirror CI coverage flags |
 
 Prefer Makefile/CI commands when they exist — they are the source of truth.
 
@@ -124,11 +111,9 @@ Prefer Makefile/CI commands when they exist — they are the source of truth.
 | Write code first, tests after | Red → Green → Refactor |
 | Commit with failing or skipped tests | Fix or add tests; never `--no-verify` unless user explicitly requests |
 | `"Good enough"` coverage (e.g. 80%) | 100% on generated/changed code |
-| Lint only changed lines when CI lints whole project | Match CI scope |
-| Disable rules or exclude files to pass lint | Fix the code |
 | Skip gates on "small" changes | Run gates every time |
 | Assume tests pass without running them | Always run tests locally before commit |
 
 ## Additional Resources
 
-- Stack-specific coverage and lint commands: [examples.md](examples.md)
+- Stack-specific test and coverage commands: [examples.md](examples.md)
