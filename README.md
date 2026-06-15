@@ -32,6 +32,20 @@ Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other su
 curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.sh | bash -s -- --all -y
 ```
 
+**Windows (PowerShell):**
+
+```powershell
+# From a clone of this repo
+.\install.ps1 --list
+.\install.ps1 --all -y
+.\install.ps1 -s docker -a cursor -a claude-code
+.\install.ps1 -s test -a cursor --as-rule
+
+# Download and run
+irm https://raw.githubusercontent.com/brianlechthaler/skills/main/install.ps1 -OutFile install.ps1
+.\install.ps1 --all -y
+```
+
 Options:
 
 | Flag | Description |
