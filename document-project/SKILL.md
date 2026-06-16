@@ -104,7 +104,7 @@ Capture screenshots when they show something text cannot replace:
 
 Store images under `docs/images/` (or `docs/assets/`). Use descriptive filenames (`login-form-validation-error.png`). Reference with relative paths and alt text that states what the image shows.
 
-If the agent can capture screenshots (browser MCP, running app locally), capture them during documentation. If not, leave a clear placeholder comment for the user: `<!-- screenshot: settings panel with API key field -->`.
+If the project has a runnable UI, use [document-screenshots](../document-screenshots/SKILL.md) to capture and embed images during documentation. If browser MCP is unavailable, leave a clear placeholder: `<!-- screenshot: settings panel with API key field -->`.
 
 Do not screenshot generic terminal commands that copy-paste equally well as code blocks.
 
