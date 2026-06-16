@@ -16,7 +16,7 @@ When the work involves a web app or web application:
 
 - **Verify behavior in a real browser** before marking UI work complete, staging, or committing
 - Exercise the **actual user flows** affected by the change (navigation, forms, buttons, modals, routing)
-- **Confirm visually** with snapshots and screenshots when layout or styling matters
+- **Confirm visually** with snapshots and screenshots when layout or styling matters; persist captures into docs via [document-screenshots](../document-screenshots/SKILL.md) when documenting UI
 - Report what was tested, the URL, and pass/fail per flow
 
 Browser testing supplements — does not replace — unit tests and coverage from the [test](../test/SKILL.md) skill. Run both when applicable.
