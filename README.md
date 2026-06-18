@@ -13,6 +13,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
+| [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
