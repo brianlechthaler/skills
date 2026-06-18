@@ -8,34 +8,35 @@ Use the installer to drop skills into each tool's discovery path, or install the
 
 ```bash
 # List skills and supported tools
-./install.sh --list
-./install.sh --list-agents
+python3 install.py --list
+python3 install.py --list-agents
 
 # Install all skills to auto-detected tools (project-local, symlinked)
-./install.sh --all
+python3 install.py --all
 
 # Install globally to your home directory
-./install.sh --all -g -y
+python3 install.py --all -g -y
 
 # Install specific skills to specific tools
-./install.sh -s docker -s test -a cursor -a claude-code -a opencode
+python3 install.py -s docker -s test -a cursor -a claude-code -a opencode
 
 # Install as rules instead of skills
-./install.sh -s test -a cursor --as-rule
-./install.sh --all -a claude-code -a windsurf --as-rule -g -y
+python3 install.py -s test -a cursor --as-rule
+python3 install.py --all -a claude-code -a windsurf --as-rule -g -y
 ```
 
-**Windows (PowerShell):** replace `./install.sh` with `.\install.ps1` — flags are the same.
+**Windows:** use `python install.py` instead of `python3 install.py` — flags are the same.
 
 **One-liner (no clone required):**
 
 ```bash
-curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.sh | bash -s -- --all -y
+curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.py -o install.py
+python3 install.py --all -y
 ```
 
 By default the installer **symlinks** skill directories to this repo so updates here are picked up immediately. Use `--copy` when you want standalone copies (recommended for global installs without keeping a local clone).
 
-Run `./install.sh --list-agents` to see every supported tool and its install paths.
+Run `python3 install.py --list-agents` to see every supported tool and its install paths.
 
 ---
 
@@ -99,7 +100,7 @@ The installer reads each skill's `SKILL.md` and writes tool-specific rule files:
 | Gemini CLI | `GEMINI.md` | Appended section |
 | Cline / Roo / Continue / Trae / Universal | `.agents/rules/<skill>.md` | Plain markdown per file |
 
-Global paths mirror project paths under your home directory (see `./install.sh --list-agents`).
+Global paths mirror project paths under your home directory (see `python3 install.py --list-agents`).
 
 **Append mode** (Copilot, OpenCode, Codex, Gemini) wraps each skill in HTML comment markers so re-running the installer updates safely:
 
@@ -133,8 +134,8 @@ Cursor also discovers skills in `.agents/skills/`, `.claude/skills/`, and `.code
 **Install:**
 
 ```bash
-./install.sh -s docker -a cursor          # skills
-./install.sh -s test -a cursor --as-rule  # rules
+python3 install.py -s docker -a cursor          # skills
+python3 install.py -s test -a cursor --as-rule  # rules
 ```
 
 **Using skills**
@@ -169,8 +170,8 @@ Claude walks parent directories up to the repo root and discovers nested `.claud
 **Install:**
 
 ```bash
-./install.sh --all -a claude-code
-./install.sh -s lint -a claude-code --as-rule -g -y
+python3 install.py --all -a claude-code
+python3 install.py -s lint -a claude-code --as-rule -g -y
 ```
 
 **Using skills**
@@ -202,8 +203,8 @@ OpenCode also reads `.claude/skills/` and `.agents/skills/` for compatibility.
 **Install:**
 
 ```bash
-./install.sh -s docker -a opencode
-./install.sh -s test -a opencode --as-rule
+python3 install.py -s docker -a opencode
+python3 install.py -s test -a opencode --as-rule
 ```
 
 **Using skills**
@@ -236,8 +237,8 @@ Codex also scans `.agents/skills/` up the directory tree to the repo root.
 **Install:**
 
 ```bash
-./install.sh --all -a codex -g -y
-./install.sh -s lint -a codex --as-rule
+python3 install.py --all -a codex -g -y
+python3 install.py -s lint -a codex --as-rule
 ```
 
 **Using skills**
@@ -274,8 +275,8 @@ Docs: [developers.openai.com/codex/skills](https://developers.openai.com/codex/s
 **Install:**
 
 ```bash
-./install.sh --all -a windsurf
-./install.sh -s test -a windsurf --as-rule -g -y
+python3 install.py --all -a windsurf
+python3 install.py -s test -a windsurf --as-rule -g -y
 ```
 
 **Using skills**
@@ -304,8 +305,8 @@ Global rules: appended to `~/.codeium/windsurf/memories/global_rules.md`.
 **Install:**
 
 ```bash
-./install.sh -s docker -a github-copilot
-./install.sh -s lint -a github-copilot --as-rule
+python3 install.py -s docker -a github-copilot
+python3 install.py -s lint -a github-copilot --as-rule
 ```
 
 **Using skills**
@@ -332,8 +333,8 @@ Skill content is appended to `.github/copilot-instructions.md` (or `~/.copilot/c
 **Install:**
 
 ```bash
-./install.sh --all -a gemini-cli
-./install.sh -s test -a gemini-cli --as-rule
+python3 install.py --all -a gemini-cli
+python3 install.py -s test -a gemini-cli --as-rule
 ```
 
 **Using rules** (`--as-rule`)
@@ -353,14 +354,14 @@ These tools share the `.agents/` convention:
 | Project | `.agents/skills/<skill>/SKILL.md` |
 | Global | `~/.agents/skills/<skill>/SKILL.md` |
 
-Tool-specific paths also exist (`.roo/skills/`, `.continue/skills/`, `.trae/skills/`). Use `./install.sh --list-agents` for the full list.
+Tool-specific paths also exist (`.roo/skills/`, `.continue/skills/`, `.trae/skills/`). Use `python3 install.py --list-agents` for the full list.
 
 **Install:**
 
 ```bash
-./install.sh --all -a cline
-./install.sh -s docker -a roo -a continue
-./install.sh -s lint -a universal --as-rule
+python3 install.py --all -a cline
+python3 install.py -s docker -a roo -a continue
+python3 install.py -s lint -a universal --as-rule
 ```
 
 **Using rules** (`--as-rule`)
@@ -411,7 +412,7 @@ Re-run the installer with `--copy` to refresh, or delete the copied directory an
 Re-run with `--as-rule` to overwrite:
 
 ```bash
-./install.sh -s test -a cursor --as-rule
+python3 install.py -s test -a cursor --as-rule
 ```
 
 To remove, delete the rule file:
@@ -454,7 +455,7 @@ To remove manually, delete the block between the HTML comment markers in `AGENTS
 **Verify after install.**
 
 ```bash
-./install.sh --list-agents    # confirm paths
+python3 install.py --list-agents    # confirm paths
 ls .cursor/skills/            # project skills
 ls ~/.claude/skills/          # global skills
 grep skills-install AGENTS.md # appended rules

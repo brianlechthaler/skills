@@ -162,7 +162,7 @@ Inspect the repo and fill the **Deploy** section with real commands. Use the fir
 |--------|----------------|
 | `Dockerfile` + GHCR workflow | `docker pull ghcr.io/OWNER/IMAGE:vX.Y.Z` and `docker run` with required `-e` / `-p` |
 | `docker-compose.yml` | `git checkout vX.Y.Z && docker compose up -d` |
-| `install.sh` / curl installer (e.g. skills repos) | One-liner pinned to tag: `curl -sL .../install.sh \| bash -s -- --all -y` from `raw.githubusercontent.com/OWNER/REPO/vX.Y.Z/...` |
+| `install.py` / curl installer (e.g. skills repos) | One-liner pinned to tag: download `install.py` from `raw.githubusercontent.com/OWNER/REPO/vX.Y.Z/install.py`, then `python3 install.py --all -y` |
 | `package.json` + npm publish | `npm install PACKAGE@X.Y.Z` |
 | `pyproject.toml` / setup.py + PyPI | `pip install PACKAGE==X.Y.Z` |
 | Go module + tags | `go install github.com/OWNER/REPO/vX.Y.Z@X.Y.Z` |

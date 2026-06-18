@@ -23,36 +23,25 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 
 ## Installation
 
-Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other supported tools:
+Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other supported tools with the cross-platform Python installer ([details](docs/features/installer.md)):
 
 ```bash
-# From a clone of this repo
-./install.sh --list
-./install.sh --all                          # auto-detect installed tools
-./install.sh --all -g -y                    # global install, no prompts
-./install.sh -s docker -a cursor -a claude-code -a opencode
+# From a clone of this repo (requires Python 3.10+)
+python3 install.py --list
+python3 install.py --all                          # auto-detect installed tools
+python3 install.py --all -g -y                    # global install, no prompts
+python3 install.py -s docker -a cursor -a claude-code -a opencode
 
 # Install as always-on / intelligently-applied rules instead of skills
-./install.sh -s test -a cursor --as-rule
-./install.sh --all -a claude-code -a windsurf --as-rule -g -y
+python3 install.py -s test -a cursor --as-rule
+python3 install.py --all -a claude-code -a windsurf --as-rule -g -y
 
 # One-liner (downloads and runs the installer)
-curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.sh | bash -s -- --all -y
+curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.py -o install.py
+python3 install.py --all -y
 ```
 
-**Windows (PowerShell):**
-
-```powershell
-# From a clone of this repo
-.\install.ps1 --list
-.\install.ps1 --all -y
-.\install.ps1 -s docker -a cursor -a claude-code
-.\install.ps1 -s test -a cursor --as-rule
-
-# Download and run
-irm https://raw.githubusercontent.com/brianlechthaler/skills/main/install.ps1 -OutFile install.ps1
-.\install.ps1 --all -y
-```
+**Windows:** use `python install.py` instead of `python3 install.py` — flags are the same.
 
 Options:
 
@@ -70,13 +59,14 @@ Options:
 
 By default the script symlinks skills from this repo so updates here are picked up immediately. Use `--copy` when installing globally without keeping a local clone.
 
-Use `--as-rule` when a tool should load skill instructions as persistent rules instead of on-demand skills. Cursor rules are written as `.cursor/rules/<skill>.mdc` with intelligent activation; Claude Code uses `.claude/rules/<skill>.md`; Windsurf uses `.windsurf/rules/<skill>.md`; OpenCode and Codex append sections to `AGENTS.md`; and other agents use their documented rules directories (see `./install.sh --list-agents`). Re-running `--as-rule` updates existing rule sections safely.
+Use `--as-rule` when a tool should load skill instructions as persistent rules instead of on-demand skills. Cursor rules are written as `.cursor/rules/<skill>.mdc` with intelligent activation; Claude Code uses `.claude/rules/<skill>.md`; Windsurf uses `.windsurf/rules/<skill>.md`; OpenCode and Codex append sections to `AGENTS.md`; and other agents use their documented rules directories (see `python3 install.py --list-agents`). Re-running `--as-rule` updates existing rule sections safely.
 
 Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills from `~/.cursor/skills/` (personal) and `.cursor/skills/` (project).
 
-## Usage
+## Documentation
 
-See **[USAGE.md](USAGE.md)** for a per-tool guide covering Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, Gemini CLI, and more — including how to use skills vs rules (`--as-rule`), verify installs, and update or remove them.
+- [Getting started](docs/features/installer.md) — install skills on macOS, Windows, and Linux
+- [USAGE.md](USAGE.md) — per-tool guide (skills vs rules, verify, update, remove)
 
 ## Adding a Skill
 
