@@ -37,7 +37,8 @@ cat > /tmp/release-notes.md <<EOF
 
 ### Install from this release
 \`\`\`bash
-curl -sL https://raw.githubusercontent.com/$REPO/$VERSION/install.sh | bash -s -- --all -y
+curl -sL https://raw.githubusercontent.com/$REPO/$VERSION/install.py -o install.py
+python3 install.py --all -y
 \`\`\`
 
 ### Upgrade
@@ -45,7 +46,7 @@ Re-run the installer; symlinks update when installing from a local clone at \`$V
 
 ### Verify
 \`\`\`bash
-./install.sh --list
+python3 install.py --list
 ls ~/.cursor/skills/github-release/SKILL.md
 \`\`\`
 EOF
