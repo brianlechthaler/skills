@@ -20,6 +20,8 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [security-audit](security-audit/SKILL.md) | Perform aggressive full-surface security audits with optional auto-remediation of discovered vulnerabilities. |
 | [orchestrate](orchestrate/SKILL.md) | Plan comprehensively and run subagents in parallel by phase, respecting dependencies and avoiding race conditions. |
+| [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+| [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 
 ## Installation
 
