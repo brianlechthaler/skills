@@ -3,9 +3,10 @@ name: docker
 description: >-
   Run all builds, tests, and tooling inside Docker containers with nothing
   installed on the host except Docker. Mount host credentials and SSH keys
-  read-only when needed. Use when building, testing, installing dependencies,
-  running linters, CI locally, or when the user mentions Docker, containers,
-  or containerized workflows.
+  read-only when needed. Clean up ephemeral test containers when finished.
+  Use when building, testing, installing dependencies, running linters, CI
+  locally, or when the user mentions Docker, containers, or containerized
+  workflows.
 ---
 
 # Containerized Docker Workflow
@@ -68,6 +69,35 @@ docker run --rm -it -v "$(pwd):/workspace" -w /workspace image:tag bash
 ```
 
 Always use `--rm` for ephemeral tasks. Mount the project at a fixed path (`/workspace` is the default convention).
+
+## Cleanup Ephemeral Containers
+
+When you finish testing or one-off container work, remove any temporary containers you created. Do not leave stopped or idle test containers behind.
+
+**Prevention (preferred):**
+- Use `--rm` on `docker run` and `docker compose run` so containers auto-remove on exit.
+- Avoid `-d` / detached mode for short test runs unless you will explicitly clean up afterward.
+
+**After testing, clean up anything still running or stopped:**
+
+```bash
+# List containers from this session (note names/IDs before removing)
+docker ps -a
+
+# Stop and remove specific containers you started
+docker stop <container-id-or-name>
+docker rm <container-id-or-name>
+
+# Remove one-off compose containers (service name from your compose file)
+docker compose rm -f -s -v service-name
+
+# If you started detached containers and lost track of IDs, remove exited containers
+docker container prune -f
+```
+
+Only prune or bulk-remove containers you created for the current task. Do not remove unrelated long-lived dev containers, databases, or services the user is actively using unless they ask.
+
+If a test fails mid-run and leaves a container behind, clean it up before moving on or ending the session.
 
 ## Credential and SSH Mounts
 
@@ -149,6 +179,7 @@ When working in a containerized project:
 - [ ] Check for existing Dockerfile or compose before proposing new ones
 - [ ] Mount credentials read-only; use `--env-file` for secrets
 - [ ] Use `--rm` for one-off containers
+- [ ] Clean up ephemeral test containers when finished (stop/rm, or `docker compose rm`, or `docker container prune -f` for exited leftovers)
 - [ ] Fix failing container commands (Dockerfile, compose, mounts) — do not bypass with host installs
 - [ ] If Docker is unavailable on the host, say so; do not silently install tools locally
 
@@ -160,4 +191,5 @@ When working in a containerized project:
 | `brew install`, `apt install` on host for project deps | Add to Dockerfile |
 | Copying `.ssh/id_rsa` into repo or image | Bind-mount `:ro` at runtime |
 | "Just run it locally this once" | One-off `docker run` with same mounts |
+| Leaving stopped test containers around | Use `--rm`; run cleanup before ending the task |
 | Polling host `node -v` / `python --version` | Check versions inside the container |
