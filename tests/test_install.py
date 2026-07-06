@@ -14,6 +14,22 @@ import pytest
 
 import install
 
+REQUIRED_COMPAT_AGENTS: tuple[str, ...] = (
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "openclaw",
+    "hermes-agent",
+    "mistral-vibe",
+    "cursor",
+    "aider",
+    "windsurf",
+    "kilo-code",
+    "opencode",
+    "augment",
+    "antigravity",
+)
+
 
 @pytest.fixture
 def repo_root(tmp_path: Path) -> Path:
@@ -49,6 +65,45 @@ def test_agent_and_rule_lookup() -> None:
     assert "cursor" in install.all_agent_ids()
 
 
+def test_required_agent_compatibility() -> None:
+    agent_ids = set(install.all_agent_ids())
+    for agent_id in REQUIRED_COMPAT_AGENTS:
+        assert agent_id in agent_ids, f"missing skill install mapping for {agent_id}"
+        assert install.rule_by_id(agent_id) is not None, (
+            f"missing rule install mapping for {agent_id}"
+        )
+
+
+@pytest.mark.parametrize(
+    "agent_id,project_skill_path,global_skill_path",
+    [
+        ("openclaw", "skills", ".openclaw/skills"),
+        ("hermes-agent", ".hermes/skills", ".hermes/skills"),
+        ("mistral-vibe", ".vibe/skills", ".vibe/skills"),
+        ("aider", ".aider/skills", ".aider/skills"),
+        ("kilo-code", ".kilo/skills", ".kilo/skills"),
+        ("augment", ".augment/skills", ".augment/skills"),
+        ("antigravity", ".agents/skills", ".gemini/antigravity/skills"),
+    ],
+)
+def test_new_agent_skill_paths(
+    options: install.InstallOptions,
+    agent_id: str,
+    project_skill_path: str,
+    global_skill_path: str,
+) -> None:
+    options.project_dir.mkdir(parents=True)
+    assert (
+        install.resolve_agent_dir(options, agent_id)
+        == options.project_dir / project_skill_path
+    )
+    options.global_install = True
+    assert (
+        install.resolve_agent_dir(options, agent_id)
+        == options.home_dir / global_skill_path
+    )
+
+
 def test_validate_skill_name_invalid() -> None:
     with pytest.raises(SystemExit):
         install.validate_skill_name("../evil")
@@ -80,6 +135,9 @@ def test_list_agents(capsys: pytest.CaptureFixture[str]) -> None:
     install.list_agents()
     output = capsys.readouterr().out
     assert "cursor" in output
+    assert "openclaw" in output
+    assert "hermes-agent" in output
+    assert "mistral-vibe" in output
     assert "RULE PROJECT" in output
 
 
@@ -198,6 +256,20 @@ def test_detect_agents_via_command(tmp_path: Path) -> None:
     with mock.patch("install.shutil.which", return_value="/usr/bin/claude"):
         detected = install.detect_agents(home)
     assert "claude-code" in detected
+
+
+def test_detect_new_agents(tmp_path: Path) -> None:
+    home = tmp_path / "home3"
+    home.mkdir()
+    (home / ".openclaw").mkdir()
+    (home / ".hermes").mkdir()
+    (home / ".vibe").mkdir()
+    (home / ".augment").mkdir()
+    detected = install.detect_agents(home)
+    assert "openclaw" in detected
+    assert "hermes-agent" in detected
+    assert "mistral-vibe" in detected
+    assert "augment" in detected
 
 
 def test_expand_agents() -> None:
@@ -398,6 +470,21 @@ def test_install_rule_append(options: install.InstallOptions) -> None:
     install.install_skill_as_rule_for_agent(options, "docker", "opencode")
     agents_md = options.project_dir / "AGENTS.md"
     assert "skills-install:docker" in agents_md.read_text(encoding="utf-8")
+
+
+def test_install_rule_append_aider(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    install.install_skill_as_rule_for_agent(options, "docker", "aider")
+    conventions = options.project_dir / "CONVENTIONS.md"
+    assert "skills-install:docker" in conventions.read_text(encoding="utf-8")
+
+
+def test_install_skill_openclaw(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    options.method = "copy"
+    install.install_skill_for_agent(options, "docker", "openclaw")
+    dest = options.project_dir / "skills/docker/SKILL.md"
+    assert dest.is_file()
 
 
 def test_confirm() -> None:

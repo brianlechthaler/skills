@@ -52,6 +52,13 @@ AGENT_DEFS: tuple[AgentDef, ...] = (
     AgentDef("windsurf", ".windsurf/skills", "~/.codeium/windsurf/skills"),
     AgentDef("github-copilot", ".github/skills", "~/.copilot/skills"),
     AgentDef("gemini-cli", ".gemini/skills", "~/.gemini/skills"),
+    AgentDef("openclaw", "skills", "~/.openclaw/skills"),
+    AgentDef("hermes-agent", ".hermes/skills", "~/.hermes/skills"),
+    AgentDef("mistral-vibe", ".vibe/skills", "~/.vibe/skills"),
+    AgentDef("aider", ".aider/skills", "~/.aider/skills"),
+    AgentDef("kilo-code", ".kilo/skills", "~/.kilo/skills"),
+    AgentDef("augment", ".augment/skills", "~/.augment/skills"),
+    AgentDef("antigravity", ".agents/skills", "~/.gemini/antigravity/skills"),
     AgentDef("cline", ".agents/skills", "~/.agents/skills"),
     AgentDef("roo", ".roo/skills", "~/.roo/skills"),
     AgentDef("continue", ".continue/skills", "~/.continue/skills"),
@@ -79,6 +86,13 @@ RULE_DEFS: tuple[RuleDef, ...] = (
     RuleDef("opencode", "AGENTS.md", "~/.opencode/AGENTS.md", "plain", "append"),
     RuleDef("codex", "AGENTS.md", "~/.codex/AGENTS.md", "plain", "append"),
     RuleDef("gemini-cli", "GEMINI.md", "~/.gemini/GEMINI.md", "plain", "append"),
+    RuleDef("openclaw", ".agents/rules", "~/.agents/rules", "plain", "per-file"),
+    RuleDef("hermes-agent", ".hermes/rules", "~/.hermes/rules", "plain", "per-file"),
+    RuleDef("mistral-vibe", ".vibe/rules", "~/.vibe/rules", "plain", "per-file"),
+    RuleDef("aider", "CONVENTIONS.md", "~/.aider/CONVENTIONS.md", "plain", "append"),
+    RuleDef("kilo-code", "AGENTS.md", "~/.config/kilo/AGENTS.md", "plain", "append"),
+    RuleDef("augment", ".augment/rules", "~/.augment/rules", "plain", "per-file"),
+    RuleDef("antigravity", ".agents/rules", "~/.agents/rules", "plain", "per-file"),
     RuleDef("cline", ".agents/rules", "~/.agents/rules", "plain", "per-file"),
     RuleDef("roo", ".roo/rules", "~/.roo/rules", "plain", "per-file"),
     RuleDef("continue", ".continue/rules", "~/.continue/rules", "plain", "per-file"),
@@ -310,6 +324,17 @@ def detect_agents(home: Path) -> list[str]:
         ("windsurf", [home / ".codeium/windsurf"], "windsurf"),
         ("github-copilot", [home / ".copilot"], None),
         ("gemini-cli", [home / ".gemini"], "gemini"),
+        ("openclaw", [home / ".openclaw"], "openclaw"),
+        ("hermes-agent", [home / ".hermes"], "hermes"),
+        ("mistral-vibe", [home / ".vibe"], "vibe"),
+        ("aider", [home / ".aider"], "aider"),
+        ("kilo-code", [home / ".kilo", home / ".kilocode"], None),
+        ("augment", [home / ".augment"], None),
+        (
+            "antigravity",
+            [home / ".gemini/antigravity", home / ".gemini/antigravity-cli"],
+            None,
+        ),
     ]
     for agent_id, dirs, cmd in checks:
         if any(path.is_dir() for path in dirs):
@@ -496,7 +521,8 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Popular agents: cursor, claude-code, opencode, codex, windsurf, "
-            "github-copilot, gemini-cli, cline, roo, universal\n\n"
+            "gemini-cli, openclaw, hermes-agent, mistral-vibe, aider, kilo-code, "
+            "augment, antigravity, github-copilot, cline, roo, universal\n\n"
             "Use --agent all to install to all supported agents."
         ),
     )
