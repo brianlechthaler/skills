@@ -4,6 +4,8 @@ This repository ships reusable [Agent Skills](https://agentskills.io/) — porta
 
 Use the installer to drop skills into each tool's discovery path, or install them as **rules** when you want always-on or intelligently-applied guidance instead of on-demand loading.
 
+**Full tool reference:** [docs/features/supported-tools.md](docs/features/supported-tools.md) lists all 19 supported tools with skill paths, rule paths, auto-detection, and install examples.
+
 ## Quick start
 
 ```bash
@@ -93,12 +95,20 @@ The installer reads each skill's `SKILL.md` and writes tool-specific rule files:
 |------|---------------|--------|
 | Cursor | `.cursor/rules/<skill>.mdc` | Frontmatter with `description`, `alwaysApply: false` |
 | Claude Code | `.claude/rules/<skill>.md` | Frontmatter + body |
-| Windsurf | `.windsurf/rules/<skill>.md` | `trigger: model_decision`, `description` |
+| Windsurf | `.windsurf/rules/<skill>.md` (project) or `~/.codeium/windsurf/memories/global_rules.md` (global) | `trigger: model_decision`, `description` |
 | GitHub Copilot | `.github/copilot-instructions.md` | Appended section |
 | OpenCode | `AGENTS.md` | Appended section |
 | Codex | `AGENTS.md` | Appended section |
 | Gemini CLI | `GEMINI.md` | Appended section |
-| Cline / Roo / Continue / Trae / Universal | `.agents/rules/<skill>.md` | Plain markdown per file |
+| Aider | `CONVENTIONS.md` | Appended section |
+| Kilo Code | `AGENTS.md` (global: `~/.config/kilo/AGENTS.md`) | Appended section |
+| OpenClaw / Antigravity / Cline / Universal | `.agents/rules/<skill>.md` | Plain markdown per file |
+| Hermes Agent | `.hermes/rules/<skill>.md` | Plain markdown per file |
+| Mistral Vibe | `.vibe/rules/<skill>.md` | Plain markdown per file |
+| Augment | `.augment/rules/<skill>.md` | Plain markdown per file |
+| Roo | `.roo/rules/<skill>.md` | Plain markdown per file |
+| Continue | `.continue/rules/<skill>.md` | Plain markdown per file |
+| Trae | `.trae/rules/<skill>.md` | Plain markdown per file |
 
 Global paths mirror project paths under your home directory (see `python3 install.py --list-agents`).
 
@@ -343,9 +353,30 @@ Skill content is appended to `GEMINI.md` (project root or `~/.gemini/GEMINI.md`)
 
 ---
 
+### OpenClaw, Hermes Agent, Mistral Vibe, Aider, Kilo Code, and Augment
+
+These tools have dedicated install paths. See [docs/features/supported-tools.md](docs/features/supported-tools.md) for full path tables and examples.
+
+| Agent ID | Skill path (project) | Rules (`--as-rule`) |
+|----------|----------------------|---------------------|
+| `openclaw` | `skills/<skill>/` | `.agents/rules/<skill>.md` |
+| `hermes-agent` | `.hermes/skills/<skill>/` | `.hermes/rules/<skill>.md` |
+| `mistral-vibe` | `.vibe/skills/<skill>/` | `.vibe/rules/<skill>.md` |
+| `aider` | `.aider/skills/<skill>/` | `CONVENTIONS.md` (append) |
+| `kilo-code` | `.kilo/skills/<skill>/` | `AGENTS.md` (append) |
+| `augment` | `.augment/skills/<skill>/` | `.augment/rules/<skill>.md` |
+| `antigravity` | `.agents/skills/<skill>/` | `.agents/rules/<skill>.md` |
+
+```bash
+python3 install.py -s docker -a openclaw -a aider
+python3 install.py -s lint -a kilo-code --as-rule -g -y
+```
+
+---
+
 ### Cline, Roo, Continue, Trae, and Universal
 
-These tools share the `.agents/` convention:
+These tools share the `.agents/` convention (Cline, Antigravity, and Universal use `.agents/skills/`; Roo, Continue, and Trae have tool-specific paths — see the [supported tools reference](docs/features/supported-tools.md)):
 
 **Skills**
 
@@ -465,6 +496,8 @@ grep skills-install AGENTS.md # appended rules
 
 ## Official documentation
 
+See [docs/features/supported-tools.md](docs/features/supported-tools.md) for the complete list of 19 supported tools.
+
 | Tool | Skills | Rules / context |
 |------|--------|-----------------|
 | Agent Skills (open standard) | [agentskills.io](https://agentskills.io/) | — |
@@ -472,3 +505,5 @@ grep skills-install AGENTS.md # appended rules
 | Claude Code | [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills) | [code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory) |
 | OpenCode | [opencode.ai/docs/skills](https://opencode.ai/docs/skills) | [opencode.ai/docs/rules](https://opencode.ai/docs/rules) |
 | Codex | [developers.openai.com/codex/skills](https://developers.openai.com/codex/skills) | [developers.openai.com/codex/concepts/customization](https://developers.openai.com/codex/concepts/customization) |
+| Aider | [aider.chat](https://aider.chat) | `CONVENTIONS.md` |
+| Continue | [continue.dev](https://continue.dev) | `.continue/rules/` |

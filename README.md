@@ -70,6 +70,7 @@ Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills 
 
 ## Documentation
 
+- [Supported coding tools](docs/features/supported-tools.md) — all 19 tools, install paths, auto-detection, and rule formats
 - [Getting started](docs/features/installer.md) — install skills on macOS, Windows, and Linux
 - [USAGE.md](USAGE.md) — per-tool guide (skills vs rules, verify, update, remove)
 
