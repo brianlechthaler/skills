@@ -87,5 +87,6 @@ Remote install downloads only from `https://github.com/` tarballs. Archive membe
 
 ## Related
 
+- [Supported coding tools](supported-tools.md) — all 19 tools, paths, auto-detection, and rule formats
 - [USAGE.md](../../USAGE.md) — per-tool install paths and skills vs rules
 - [README.md](../../README.md) — project overview
