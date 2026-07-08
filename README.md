@@ -27,7 +27,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
 | [prompt-conciseness](prompt-conciseness/SKILL.md) | Shorten system prompts and agent instructions to save tokens while preserving every critical policy and capability. |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
-| [shrink-code](shrink-code/SKILL.md) | Reduce lines of code without reducing functionality — deduplicate logic, remove dead code, and simplify over-abstractions. |
+| [simple-code](simple-code/SKILL.md) | Write the simplest possible code with the fewest lines — no redundant logic, abstractions, or helpers. |
 
 ## Installation
 
