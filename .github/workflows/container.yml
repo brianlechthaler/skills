@@ -4,8 +4,20 @@ on:
   push:
     branches: [main]
     tags: ["v*"]
+    paths:
+      - install.py
+      - tests/**
+      - pyproject.toml
+      - Dockerfile
+      - .github/workflows/**
   pull_request:
     branches: [main]
+    paths:
+      - install.py
+      - tests/**
+      - pyproject.toml
+      - Dockerfile
+      - .github/workflows/**
   workflow_dispatch:
 
 concurrency:
