@@ -3,8 +3,20 @@ name: Lint
 on:
   push:
     branches: [main]
+    paths:
+      - install.py
+      - tests/**
+      - pyproject.toml
+      - Dockerfile
+      - .github/workflows/**
   pull_request:
     branches: [main]
+    paths:
+      - install.py
+      - tests/**
+      - pyproject.toml
+      - Dockerfile
+      - .github/workflows/**
   workflow_dispatch:
 
 concurrency:
@@ -16,10 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
 
       - run: pip install ruff
       - run: ruff check install.py tests/
