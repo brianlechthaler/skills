@@ -19,6 +19,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
+| [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
 | [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [security-audit](security-audit/SKILL.md) | Perform aggressive full-surface security audits with optional auto-remediation of discovered vulnerabilities. |
@@ -27,6 +28,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusa
 | [terse](terse/SKILL.md) | Minimize tokens in user-facing prose — fewest words needed for status, results, and next steps. |
 | [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
+| [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
 | [prompt-conciseness](prompt-conciseness/SKILL.md) | Shorten system prompts and agent instructions to save tokens while preserving every critical policy and capability. |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
 | [simple-code](simple-code/SKILL.md) | Write the simplest possible code with the fewest lines — no redundant logic, abstractions, or helpers. |
