@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - install.py
+      - scripts/**
       - tests/**
       - pyproject.toml
       - Dockerfile
@@ -13,6 +14,7 @@ on:
     branches: [main]
     paths:
       - install.py
+      - scripts/**
       - tests/**
       - pyproject.toml
       - Dockerfile
@@ -38,5 +40,5 @@ jobs:
           cache-dependency-path: pyproject.toml
 
       - run: pip install ruff
-      - run: ruff check install.py tests/
-      - run: ruff format --check install.py tests/
+      - run: ruff check install.py scripts/ tests/
+      - run: ruff format --check install.py scripts/ tests/
