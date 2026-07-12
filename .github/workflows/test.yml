@@ -5,16 +5,20 @@ on:
     branches: [main]
     paths:
       - install.py
+      - scripts/**
       - tests/**
       - pyproject.toml
+      - README.md
       - Dockerfile
       - .github/workflows/**
   pull_request:
     branches: [main]
     paths:
       - install.py
+      - scripts/**
       - tests/**
       - pyproject.toml
+      - README.md
       - Dockerfile
       - .github/workflows/**
   workflow_dispatch:
@@ -39,3 +43,4 @@ jobs:
 
       - run: pip install pytest pytest-cov
       - run: pytest
+      - run: python scripts/sync_readme_skill_count.py --check

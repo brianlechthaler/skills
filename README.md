@@ -1,8 +1,9 @@
 # skills
 
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:28 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **28** reusable instructions that teach the agent specialized workflows.
 
-## Skills
+## Skills (28)
 
 | Skill | Description |
 |-------|-------------|
@@ -87,7 +88,7 @@ Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills 
 
 1. Create a directory named after the skill (lowercase, hyphens).
 2. Add a `SKILL.md` with YAML frontmatter (`name`, `description`) and instructions.
-3. Update this README with a row in the skills table.
+3. Update this README with a row in the skills table. The skill count in the intro and `## Skills (N)` heading is synced automatically on merge to `main`; run `python scripts/sync_readme_skill_count.py` locally if you want to update it in your branch.
 
 See [Cursor's skill documentation](https://cursor.com/docs/context/skills) for authoring guidelines.
 

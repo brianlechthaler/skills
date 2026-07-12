@@ -1,0 +1,35 @@
+name: Sync skill count
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/SKILL.md"
+      - "scripts/sync_readme_skill_count.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-skill-count
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update README skill count
+        run: python scripts/sync_readme_skill_count.py
+
+      - name: Commit and push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: sync README skill count"
+          file_pattern: README.md
