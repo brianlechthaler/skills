@@ -5,7 +5,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30*
 
 ## Skills (30)
 
-### DevOps & CI (5)
+### DevOps & CI (6)
 
 | Skill | Description |
 |-------|-------------|
@@ -13,6 +13,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30*
 | [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
+| [ci-debug](ci-debug/SKILL.md) | Debug GitHub Actions failures — fetch logs, classify errors, reproduce locally, and optionally fix the underlying issue. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 
 ### GitHub (3)
