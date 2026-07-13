@@ -423,11 +423,26 @@ ln -s "$(pwd)/test" ~/.claude/skills/test
 
 ## Updating and removing
 
+### Uninstall with the installer
+
+Remove specific skills or rules without deleting files by hand:
+
+```bash
+python3 install.py --uninstall -s docker -a cursor -y
+python3 install.py --uninstall -s docker -s test -a cursor -a claude-code -y
+python3 install.py --uninstall --all -a cursor -g -y    # every skill from this repo
+python3 install.py --uninstall -s test -a cursor --as-rule -y
+```
+
+You must pass `-s`/`--skill` for each skill to remove, or `--all` to uninstall every skill listed in this repo. The installer auto-detects agents unless you pass `-a`. Use `-g` for global installs and `--as-rule` when skills were installed as rules.
+
+If a skill is not installed for an agent, the installer skips it and continues.
+
 ### Skills (symlinked)
 
 Edit `SKILL.md` in this repo — changes are live immediately for symlinked installs.
 
-To remove:
+To remove manually:
 
 ```bash
 rm .cursor/skills/docker          # remove symlink

@@ -235,6 +235,164 @@ def test_upsert_marked_section(tmp_path: Path) -> None:
     assert "content one" not in text
 
 
+def test_remove_marked_section(tmp_path: Path) -> None:
+    target = tmp_path / "AGENTS.md"
+    assert not install.remove_marked_section(target, "docker")
+
+    install.upsert_marked_section(target, "docker", "content one")
+    install.upsert_marked_section(target, "test", "content two")
+    assert install.remove_marked_section(target, "docker")
+    text = target.read_text(encoding="utf-8")
+    assert "docker" not in text
+    assert "test" in text
+
+    assert install.remove_marked_section(target, "test")
+    assert not target.exists()
+
+
+def test_remove_marked_section_missing_marker(tmp_path: Path) -> None:
+    target = tmp_path / "AGENTS.md"
+    target.write_text("no markers here\n", encoding="utf-8")
+    assert not install.remove_marked_section(target, "docker")
+
+
+def test_expand_uninstall_skills(options: install.InstallOptions) -> None:
+    options.skills = ["docker"]
+    assert install.expand_uninstall_skills(options) == ["docker"]
+    options.install_all_skills = True
+    assert install.expand_uninstall_skills(options) == ["docker"]
+    options.install_all_skills = False
+    options.skills = []
+    with pytest.raises(SystemExit):
+        install.expand_uninstall_skills(options)
+    options.skills = ["../evil"]
+    with pytest.raises(SystemExit):
+        install.expand_uninstall_skills(options)
+
+
+def test_uninstall_skill_copy(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    options.method = "copy"
+    install.install_skill_for_agent(options, "docker", "cursor")
+    assert install.uninstall_skill_for_agent(options, "docker", "cursor")
+    assert not (options.project_dir / ".cursor/skills/docker").exists()
+
+
+def test_uninstall_skill_symlink(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    options.method = "symlink"
+    install.install_skill_for_agent(options, "docker", "cursor")
+    assert install.uninstall_skill_for_agent(options, "docker", "cursor")
+    assert not (options.project_dir / ".cursor/skills/docker").exists()
+
+
+def test_uninstall_skill_not_installed(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    assert not install.uninstall_skill_for_agent(options, "docker", "cursor")
+
+
+def test_uninstall_skill_skip_non_skill_dir(
+    options: install.InstallOptions, tmp_path: Path
+) -> None:
+    options.project_dir.mkdir(parents=True)
+    dest = options.project_dir / ".cursor/skills/docker"
+    dest.mkdir(parents=True)
+    (dest / "notes.txt").write_text("not a skill", encoding="utf-8")
+    assert not install.uninstall_skill_for_agent(options, "docker", "cursor")
+    assert dest.exists()
+
+
+def test_uninstall_rule_per_file(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    install.install_skill_as_rule_for_agent(options, "docker", "cursor")
+    assert install.uninstall_skill_as_rule_for_agent(options, "docker", "cursor")
+    assert not (options.project_dir / ".cursor/rules/docker.mdc").exists()
+
+
+def test_uninstall_rule_append(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    install.install_skill_as_rule_for_agent(options, "docker", "opencode")
+    assert install.uninstall_skill_as_rule_for_agent(options, "docker", "opencode")
+    agents_md = options.project_dir / "AGENTS.md"
+    assert not agents_md.exists()
+
+
+def test_uninstall_rule_not_installed(options: install.InstallOptions) -> None:
+    options.project_dir.mkdir(parents=True)
+    assert not install.uninstall_skill_as_rule_for_agent(options, "docker", "cursor")
+    assert not install.uninstall_skill_as_rule_for_agent(options, "docker", "opencode")
+
+
+def test_run_uninstall_cancelled(options: install.InstallOptions) -> None:
+    options.uninstall = True
+    options.project_dir.mkdir(parents=True)
+    options.agents = ["cursor"]
+    options.skills = ["docker"]
+    options.yes = False
+    with mock.patch("builtins.input", return_value="n"):
+        assert install.run_uninstall(options) == 0
+
+
+def test_run_uninstall_success(options: install.InstallOptions) -> None:
+    options.uninstall = True
+    options.project_dir.mkdir(parents=True)
+    options.agents = ["cursor"]
+    options.skills = ["docker"]
+    options.yes = True
+    options.method = "copy"
+    install.install_skill_for_agent(options, "docker", "cursor")
+    assert install.run_uninstall(options) == 0
+    assert not (options.project_dir / ".cursor/skills/docker").exists()
+
+
+def test_run_uninstall_as_rule(options: install.InstallOptions) -> None:
+    options.uninstall = True
+    options.as_rule = True
+    options.project_dir.mkdir(parents=True)
+    options.agents = ["cursor"]
+    options.skills = ["docker"]
+    options.yes = True
+    install.install_skill_as_rule_for_agent(options, "docker", "cursor")
+    assert install.run_uninstall(options) == 0
+    assert not (options.project_dir / ".cursor/rules/docker.mdc").exists()
+
+
+def test_run_uninstall_all(options: install.InstallOptions) -> None:
+    options.uninstall = True
+    options.install_all_skills = True
+    options.project_dir.mkdir(parents=True)
+    options.agents = ["cursor"]
+    options.yes = True
+    options.method = "copy"
+    install.install_skill_for_agent(options, "docker", "cursor")
+    assert install.run_uninstall(options) == 0
+    assert not (options.project_dir / ".cursor/skills/docker").exists()
+
+
+def test_run_uninstall_auto_detect(options: install.InstallOptions) -> None:
+    options.uninstall = True
+    options.project_dir.mkdir(parents=True)
+    options.agents = []
+    options.skills = ["docker"]
+    options.yes = True
+    options.method = "copy"
+    (options.home_dir / ".cursor").mkdir(parents=True)
+    install.install_skill_for_agent(options, "docker", "cursor")
+    assert install.run_uninstall(options) == 0
+
+
+def test_main_uninstall(
+    repo_root: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("SKILLS_REPO_ROOT", str(repo_root))
+    project = tmp_path / "project"
+    project.mkdir()
+    monkeypatch.chdir(project)
+    install.main(["-s", "docker", "-a", "cursor", "-y"])
+    assert install.main(["--uninstall", "-s", "docker", "-a", "cursor", "-y"]) == 0
+    assert not (project / ".cursor/skills/docker").exists()
+
+
 def test_command_on_path() -> None:
     assert isinstance(install.command_on_path("python3"), bool)
 
@@ -668,6 +826,9 @@ def test_build_parser() -> None:
     assert args.install_all
     assert args.agents == ["cursor"]
     assert args.positional_skills == ["docker"]
+    uninstall_args = parser.parse_args(["--uninstall", "-s", "docker", "-a", "cursor"])
+    assert uninstall_args.uninstall
+    assert uninstall_args.skills == ["docker"]
 
 
 def test_err_and_info(capsys: pytest.CaptureFixture[str]) -> None:
