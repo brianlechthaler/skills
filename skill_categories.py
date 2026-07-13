@@ -44,6 +44,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "web-performance",
             "compiled-performance",
             "interpreted-performance",
+            "hardware-metrics",
             "valgrind-memcheck",
         ),
     ),
