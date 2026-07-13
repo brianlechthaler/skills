@@ -10,6 +10,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "compose-deploy",
             "github-workflows",
             "ci-optimize",
+            "ci-debug",
             "dependabot-merge",
         ),
     ),
