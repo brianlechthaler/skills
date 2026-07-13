@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:34 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **34** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:35 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **35** reusable instructions that teach the agent specialized workflows.
 
-## Skills (34)
+## Skills (35)
 
 ### DevOps & CI (6)
 
@@ -41,6 +41,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **34*
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
+| [skill-quality](skill-quality/SKILL.md) | Analyze agent skill quality, score against a rubric, suggest prioritized improvements, and optionally implement fixes. |
 
 ### Performance (5)
 
