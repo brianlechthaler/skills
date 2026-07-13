@@ -37,6 +37,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **34*
 | Skill | Description |
 |-------|-------------|
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
+| [skill-test](skill-test/SKILL.md) | Create and maintain automated tests for agent skills — structure, links, install, and rule conversion. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
