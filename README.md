@@ -1,7 +1,9 @@
 # skills
 
 <!-- skill-count:38 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **38** reusable instructions that teach the agent specialized workflows.
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **38** reusable instruction bundles that teach agents specialized workflows.
+
+These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
 ## Skills (38)
 
@@ -90,7 +92,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **38*
 
 ## Installation
 
-Install skills into Cursor, Claude Code, OpenCode, Codex, Windsurf, and other supported tools with the cross-platform Python installer ([details](docs/features/installer.md)):
+Install skills into **any agent supported by the installer** — Cursor, Claude Code, OpenCode, Codex, Windsurf, and 14 more — with the cross-platform Python installer ([details](docs/features/installer.md)). Run `python3 install.py --list-agents` to see every supported agent and its install paths.
 
 ```bash
 # From a clone of this repo (requires Python 3.10+)
@@ -136,11 +138,11 @@ By default the script symlinks skills from this repo so updates here are picked 
 
 Use `--as-rule` when a tool should load skill instructions as persistent rules instead of on-demand skills. Cursor rules are written as `.cursor/rules/<skill>.mdc` with intelligent activation; Claude Code uses `.claude/rules/<skill>.md`; Windsurf uses `.windsurf/rules/<skill>.md`; OpenCode and Codex append sections to `AGENTS.md`; and other agents use their documented rules directories (see `python3 install.py --list-agents`). Re-running `--as-rule` updates existing rule sections safely.
 
-Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills from `~/.cursor/skills/` (personal) and `.cursor/skills/` (project).
+Each skill is a directory containing a `SKILL.md` file following the [Agent Skills open standard](https://agentskills.io/). Agents discover skills from tool-specific paths (for example, Cursor uses `~/.cursor/skills/` and `.cursor/skills/`; Claude Code uses `~/.claude/skills/` and `.claude/skills/`). See [Supported coding tools](docs/features/supported-tools.md) for all 19 agents and paths.
 
 ## Documentation
 
-- [Documentation index](docs/index.md) — map of all project docs
+- [Documentation index](docs/index.md) — map of all project docs (skills work with any supported agent)
 - [Getting started](docs/getting-started.md) — install, verify, and uninstall skills
 - [Installer](docs/features/installer.md) — `install.py` flags, install/uninstall flows, troubleshooting
 - [Supported coding tools](docs/features/supported-tools.md) — all 19 tools, install paths, auto-detection, and rule formats
@@ -155,7 +157,7 @@ Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills 
 3. Add the skill to `skill_categories.py` under the appropriate high-level category.
 4. Update this README with a row in the matching category table. The skill count in the intro and `## Skills (N)` heading is synced automatically on merge to `main`; run `python scripts/sync_readme_skill_count.py` locally if you want to update it in your branch.
 
-See [Cursor's skill documentation](https://cursor.com/docs/context/skills) for authoring guidelines.
+See the [Agent Skills specification](https://agentskills.io/) for the portable format. Tool-specific authoring notes: [Cursor](https://cursor.com/docs/context/skills), [Claude Code](https://code.claude.com/docs/en/skills), [OpenCode](https://opencode.ai/docs/skills), [Codex](https://developers.openai.com/codex/skills).
 
 ## License
 

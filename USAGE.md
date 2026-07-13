@@ -1,6 +1,8 @@
 # Using Skills and Rules
 
-This repository ships reusable [Agent Skills](https://agentskills.io/) — portable instruction bundles that teach AI coding agents specialized workflows. The same `SKILL.md` files work across Cursor, Claude Code, OpenCode, Codex, Windsurf, and other tools that support the open standard.
+This repository ships reusable [Agent Skills](https://agentskills.io/) — portable instruction bundles that teach AI coding agents specialized workflows.
+
+**These skills are not Cursor-specific.** The same `SKILL.md` files work across **19 supported coding agents** (Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and more). Use `install.py` to install into any agent the installer supports — one command per agent ID, or auto-detect tools on your machine.
 
 Use the installer to drop skills into each tool's discovery path, or install them as **rules** when you want always-on or intelligently-applied guidance instead of on-demand loading.
 
@@ -67,7 +69,7 @@ description: Run all builds, tests, and tooling inside Docker containers...
 
 Agents discover skills at startup (name + description only), then load the full body when a task matches the description. This **progressive disclosure** keeps context small while making many workflows available.
 
-See [agentskills.io](https://agentskills.io/) for the open specification and [Cursor's skill docs](https://cursor.com/docs/context/skills) for authoring guidelines.
+See [agentskills.io](https://agentskills.io/) for the open specification (primary authoring reference). Per-agent docs are listed in [Supported coding tools](docs/features/supported-tools.md) and [Official documentation](#official-documentation) below.
 
 ---
 

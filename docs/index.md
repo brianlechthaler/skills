@@ -2,6 +2,10 @@
 
 Map of project documentation for the skills repository.
 
+## Agent-agnostic by design
+
+Skills in this repo follow the [Agent Skills open standard](https://agentskills.io/) — they are **not exclusive to Cursor** or any single product. The same `SKILL.md` files work across **19 AI coding agents**. Use `install.py` to install into any supported agent in one command (`-a <agent-id>`), or omit `-a` to auto-detect tools on your machine. See [Supported coding tools](features/supported-tools.md) for the full agent list and install paths.
+
 ## Start here
 
 | Doc | Description |
@@ -26,5 +30,6 @@ Map of project documentation for the skills repository.
 
 ## External references
 
-- [Agent Skills open standard](https://agentskills.io/)
-- [Cursor skills docs](https://cursor.com/docs/context/skills)
+- [Agent Skills open standard](https://agentskills.io/) — portable skill format used by this repo (primary reference)
+- [Cursor skills docs](https://cursor.com/docs/context/skills) — one of many supported agents
+- [Claude Code skills](https://code.claude.com/docs/en/skills) · [OpenCode skills](https://opencode.ai/docs/skills) · [Codex skills](https://developers.openai.com/codex/skills)
