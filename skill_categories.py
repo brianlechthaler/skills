@@ -73,9 +73,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ),
     (
         "Orchestration",
-        (
-            "orchestrate",
-        ),
+        ("orchestrate",),
     ),
 )
 
@@ -110,5 +108,6 @@ def validate_skill_categories(discovered: list[str]) -> None:
                 duplicates.append(skill)
             seen.add(skill)
     if duplicates:
-        msg = f"skills listed in multiple categories: {', '.join(sorted(set(duplicates)))}"
+        dupes = ", ".join(sorted(set(duplicates)))
+        msg = f"skills listed in multiple categories: {dupes}"
         raise ValueError(msg)
