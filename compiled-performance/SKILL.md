@@ -195,7 +195,7 @@ When using threads, goroutines, or async runtimes:
 
 ### Phase 7 — Report
 
-Deliver a structured report. For large audits with many findings, use the [canvas](../canvas/SKILL.md) skill for interactive layout.
+Deliver a structured report. For large audits with many findings, use the `canvas` skill for interactive layout.
 
 ```markdown
 # Compiled Performance Report — <binary or component>
