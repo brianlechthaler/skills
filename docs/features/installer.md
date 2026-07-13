@@ -24,6 +24,8 @@ python3 install.py --all                          # auto-detect installed tools
 python3 install.py --all -g -y                    # global install, no prompts
 python3 install.py -s docker -a cursor -a claude-code -a opencode
 python3 install.py -s test -a cursor --as-rule
+python3 install.py --uninstall -s docker -a cursor -y
+python3 install.py --uninstall --all -a cursor -g -y
 ```
 
 Windows (Command Prompt or PowerShell):
@@ -53,6 +55,7 @@ python3 install.py --all -y
 | `-g`, `--global` | project-local | Install to user home dirs |
 | `--copy` | symlink | Copy files instead of symlinking |
 | `--as-rule` | skills mode | Install as AI rules instead of skills |
+| `--uninstall` | — | Remove installed skill(s) or rule(s) |
 | `-y`, `--yes` | prompt | Skip confirmation |
 | `SKILLS_REPO_ROOT` | script directory | Override repo root |
 | `SKILLS_GITHUB_REPO` | `brianlechthaler/skills` | GitHub repo for remote fetch |

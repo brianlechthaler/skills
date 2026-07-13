@@ -110,6 +110,7 @@ class InstallOptions:
     method: Method = "symlink"
     yes: bool = False
     as_rule: bool = False
+    uninstall: bool = False
     skills: list[str] = field(default_factory=list)
     agents: list[str] = field(default_factory=list)
     install_all_skills: bool = False
@@ -299,6 +300,12 @@ def convert_skill_to_rule(skill_file: Path, fmt: Format) -> str:
     return "\n".join(lines) + ("\n" if body.endswith("\n") else "")
 
 
+def marked_section_pattern(skill: str) -> re.Pattern[str]:
+    begin = f"<!-- skills-install:{skill}:begin -->"
+    end = f"<!-- skills-install:{skill}:end -->"
+    return re.compile(re.escape(begin) + r".*?" + re.escape(end) + r"\n?", re.DOTALL)
+
+
 def upsert_marked_section(target: Path, skill: str, content: str) -> None:
     begin = f"<!-- skills-install:{skill}:begin -->"
     end = f"<!-- skills-install:{skill}:end -->"
@@ -309,10 +316,7 @@ def upsert_marked_section(target: Path, skill: str, content: str) -> None:
 
     existing = target.read_text(encoding="utf-8")
     if begin in existing:
-        pattern = re.compile(
-            re.escape(begin) + r".*?" + re.escape(end) + r"\n?", re.DOTALL
-        )
-        existing = pattern.sub("", existing)
+        existing = marked_section_pattern(skill).sub("", existing)
 
     section_parts: list[str] = []
     if existing:
@@ -322,6 +326,22 @@ def upsert_marked_section(target: Path, skill: str, content: str) -> None:
         section_parts.append("\n")
     section_parts.extend([begin + "\n", content.rstrip("\n") + "\n", end + "\n"])
     target.write_text("".join(section_parts), encoding="utf-8")
+
+
+def remove_marked_section(target: Path, skill: str) -> bool:
+    if not target.is_file():
+        return False
+
+    existing = target.read_text(encoding="utf-8")
+    if f"<!-- skills-install:{skill}:begin -->" not in existing:
+        return False
+
+    updated = marked_section_pattern(skill).sub("", existing)
+    if updated.strip() == "":
+        target.unlink()
+    else:
+        target.write_text(updated, encoding="utf-8")
+    return True
 
 
 def command_on_path(name: str) -> bool:
@@ -380,6 +400,16 @@ def expand_skills(options: InstallOptions) -> list[str]:
         validate_skill_name(want)
         if want not in available:
             err(f"unknown skill: {want} (see --list)")
+    return options.skills
+
+
+def expand_uninstall_skills(options: InstallOptions) -> list[str]:
+    if options.install_all_skills:
+        return list_skills(options.repo_root)
+    if not options.skills:
+        err("specify skill(s) with -s/--skill or use --all to uninstall every skill")
+    for want in options.skills:
+        validate_skill_name(want)
     return options.skills
 
 
@@ -520,6 +550,51 @@ def install_skill_as_rule_for_agent(
     ok(f"{skill} -> {target_file} ({agent_id} rule)")
 
 
+def uninstall_skill_for_agent(
+    options: InstallOptions, skill: str, agent_id: str
+) -> bool:
+    validate_skill_name(skill)
+    agent_dir = resolve_agent_dir(options, agent_id)
+    dest = agent_dir / skill
+
+    if not dest.exists() and not dest.is_symlink():
+        info(f"{skill} not installed ({agent_id})")
+        return False
+
+    if dest.is_dir() and not dest.is_symlink():
+        if not (dest / "SKILL.md").is_file():
+            info(f"skipping {dest} (not a skill directory)")
+            return False
+
+    remove_destination(dest)
+    ok(f"removed {skill} from {agent_dir} ({agent_id})")
+    return True
+
+
+def uninstall_skill_as_rule_for_agent(
+    options: InstallOptions, skill: str, agent_id: str
+) -> bool:
+    validate_skill_name(skill)
+    target, delivery, fmt = resolve_rule_target(options, agent_id)
+
+    if delivery == "append":
+        if remove_marked_section(target, skill):
+            ok(f"removed {skill} from {target} ({agent_id} rule)")
+            return True
+        info(f"{skill} not installed ({agent_id} rule)")
+        return False
+
+    filename = rule_filename_for_skill(skill, fmt)
+    target_file = target / filename
+    if not target_file.is_file():
+        info(f"{skill} not installed ({agent_id} rule)")
+        return False
+
+    remove_destination(target_file)
+    ok(f"removed {skill} from {target_file} ({agent_id} rule)")
+    return True
+
+
 def confirm(prompt: str, yes: bool) -> bool:
     if yes:
         return True
@@ -584,6 +659,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--as-rule", action="store_true", help="Install as AI rules instead of skills"
     )
     parser.add_argument(
+        "--uninstall",
+        action="store_true",
+        help="Remove installed skill(s) or rule(s) instead of installing",
+    )
+    parser.add_argument(
         "-y", "--yes", action="store_true", help="Skip confirmation prompts"
     )
     parser.add_argument("positional_skills", nargs="*", help="Skill names")
@@ -635,6 +715,52 @@ def run_install(options: InstallOptions) -> int:
         cleanup(options)
 
 
+def run_uninstall(options: InstallOptions) -> int:
+    try:
+        if options.install_all_skills:
+            fetch_repo_if_needed(options)
+        skills = expand_uninstall_skills(options)
+        agents = options.agents or detect_agents(options.home_dir)
+        if not options.agents:
+            info(f"auto-detected agents: {' '.join(agents)}")
+        agents = expand_agents(agents, options.as_rule)
+
+        scope = (
+            f"global ({options.home_dir})"
+            if options.global_install
+            else f"project ({options.project_dir})"
+        )
+        install_mode = "rules" if options.as_rule else "skills"
+
+        print()
+        print(f"Skills : {' '.join(skills)}")
+        print(f"Agents : {' '.join(agents)}")
+        print(f"Scope  : {scope}")
+        print(f"Mode   : {install_mode}")
+        print()
+
+        if not confirm("Proceed with uninstall?", options.yes):
+            print("cancelled.")
+            return 0
+
+        removed = 0
+        for agent_id in agents:
+            for skill in skills:
+                if options.as_rule:
+                    if uninstall_skill_as_rule_for_agent(options, skill, agent_id):
+                        removed += 1
+                elif uninstall_skill_for_agent(options, skill, agent_id):
+                    removed += 1
+
+        print()
+        noun = "rule(s)" if options.as_rule else "skill(s)"
+        ok(f"removed {removed} {noun} from {len(agents)} agent(s).")
+        print("Restart your coding tool or start a new session to pick up changes.")
+        return 0
+    finally:
+        cleanup(options)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -646,7 +772,10 @@ def main(argv: list[str] | None = None) -> int:
         list_agents()
         return 0
 
-    if not repo_root.is_dir():
+    needs_repo = (
+        not args.uninstall or args.install_all or args.list or args.list_by_category
+    )
+    if needs_repo and not repo_root.is_dir():
         err(f"repo root not found: {repo_root}")
 
     options = InstallOptions(
@@ -655,10 +784,14 @@ def main(argv: list[str] | None = None) -> int:
         method="copy" if args.copy or args.as_rule else "symlink",
         yes=args.yes,
         as_rule=args.as_rule,
+        uninstall=args.uninstall,
         skills=[*args.skills, *args.positional_skills],
         agents=args.agents,
         install_all_skills=args.install_all,
     )
+
+    if args.uninstall:
+        return run_uninstall(options)
 
     if args.list or args.list_by_category:
         try:
