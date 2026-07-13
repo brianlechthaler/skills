@@ -106,9 +106,15 @@ python3 install.py --all -a claude-code -a windsurf --as-rule -g -y
 # One-liner (downloads and runs the installer)
 curl -sL https://raw.githubusercontent.com/brianlechthaler/skills/main/install.py -o install.py
 python3 install.py --all -y
+
+# Uninstall (match scope and mode from install: -g, --as-rule)
+python3 install.py --uninstall -s docker -a cursor -y
+python3 install.py --uninstall --all -a cursor -g -y
 ```
 
 **Windows:** use `python install.py` instead of `python3 install.py` — flags are the same.
+
+See [Getting started](docs/getting-started.md) for setup and [Installer — Uninstall](docs/features/installer.md#uninstall) for full remove behavior.
 
 Options:
 
@@ -123,6 +129,7 @@ Options:
 | `-g, --global` | Install to user home dirs instead of the current project |
 | `--copy` | Copy files instead of symlinking (default: symlink to this repo) |
 | `--as-rule` | Install as AI rules instead of skills (Cursor `.mdc`, Claude `.claude/rules/`, Windsurf, `AGENTS.md`, etc.) |
+| `--uninstall` | Remove installed skill(s) or rule(s) (use with `-s` or `--all`) |
 | `-y, --yes` | Skip confirmation prompts |
 
 By default the script symlinks skills from this repo so updates here are picked up immediately. Use `--copy` when installing globally without keeping a local clone.
@@ -133,8 +140,12 @@ Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills 
 
 ## Documentation
 
+- [Documentation index](docs/index.md) — map of all project docs
+- [Getting started](docs/getting-started.md) — install, verify, and uninstall skills
+- [Installer](docs/features/installer.md) — `install.py` flags, install/uninstall flows, troubleshooting
 - [Supported coding tools](docs/features/supported-tools.md) — all 19 tools, install paths, auto-detection, and rule formats
-- [Getting started](docs/features/installer.md) — install skills on macOS, Windows, and Linux
+- [Skill testing](docs/features/skill-testing.md) — CI validation and local test commands
+- [Architecture](docs/architecture.md) — repository layout and how install/uninstall works
 - [USAGE.md](USAGE.md) — per-tool guide (skills vs rules, verify, update, remove)
 
 ## Adding a Skill
