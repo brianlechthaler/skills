@@ -7,6 +7,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "DevOps & CI",
         (
             "docker",
+            "docker-optimize",
             "compose-deploy",
             "github-workflows",
             "ci-optimize",
