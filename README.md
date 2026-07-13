@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:28 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **28** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:29 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **29** reusable instructions that teach the agent specialized workflows.
 
-## Skills (28)
+## Skills (29)
 
 | Skill | Description |
 |-------|-------------|
@@ -27,6 +27,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **28*
 | [security-audit](security-audit/SKILL.md) | Perform aggressive full-surface security audits with optional auto-remediation of discovered vulnerabilities. |
 | [orchestrate](orchestrate/SKILL.md) | Plan comprehensively and run subagents in parallel by phase, respecting dependencies and avoiding race conditions. |
 | [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+| [toonify](toonify/SKILL.md) | Serialize structured data as TOON instead of JSON to cut prompt tokens 30–60% with lossless encode/decode and schema templates. |
 | [terse](terse/SKILL.md) | Minimize tokens in user-facing prose — fewest words needed for status, results, and next steps. |
 | [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
