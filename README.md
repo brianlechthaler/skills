@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:30 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:33 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **33** reusable instructions that teach the agent specialized workflows.
 
-## Skills (30)
+## Skills (33)
 
-### DevOps & CI (5)
+### DevOps & CI (6)
 
 | Skill | Description |
 |-------|-------------|
@@ -13,6 +13,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30*
 | [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
+| [ci-debug](ci-debug/SKILL.md) | Debug GitHub Actions failures — fetch logs, classify errors, reproduce locally, and optionally fix the underlying issue. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 
 ### GitHub (4)
@@ -40,13 +41,14 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30*
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
 
-### Performance (4)
+### Performance (5)
 
 | Skill | Description |
 |-------|-------------|
 | [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
 | [compiled-performance](compiled-performance/SKILL.md) | Profile compiled/native applications, analyze CPU/memory/I/O bottlenecks, recommend optimizations, and optionally implement fixes with measured before/after gains. |
 | [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
+| [hardware-metrics](hardware-metrics/SKILL.md) | Measure CPU, RAM, GPU utilization, and hardware temperatures under load; report saturation, thermal headroom, and throttling with structured before/after snapshots. |
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
 
 ### Security (3)
@@ -57,13 +59,14 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30*
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
 
-### MCP & Integrations (3)
+### MCP & Integrations (4)
 
 | Skill | Description |
 |-------|-------------|
 | [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
 | [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 | [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+| [llmfit](llmfit/SKILL.md) | Pick the best local LLM for the user's hardware with llmfit — detect specs, score fit/speed/quality, and recommend runnable models. |
 
 ### Context & Efficiency (4)
 

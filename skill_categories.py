@@ -10,6 +10,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "compose-deploy",
             "github-workflows",
             "ci-optimize",
+            "ci-debug",
             "dependabot-merge",
         ),
     ),
@@ -44,6 +45,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "web-performance",
             "compiled-performance",
             "interpreted-performance",
+            "hardware-metrics",
             "valgrind-memcheck",
         ),
     ),
@@ -61,6 +63,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "add-mcp-server",
             "codebase-memory",
             "headroom",
+            "llmfit",
         ),
     ),
     (
