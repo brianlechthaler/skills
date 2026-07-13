@@ -425,7 +425,7 @@ ln -s "$(pwd)/test" ~/.claude/skills/test
 
 ### Uninstall with the installer
 
-Remove specific skills or rules without deleting files by hand:
+Remove specific skills or rules without deleting files by hand. Full behavior, flags, and troubleshooting: [Installer — Uninstall](docs/features/installer.md#uninstall).
 
 ```bash
 python3 install.py --uninstall -s docker -a cursor -y

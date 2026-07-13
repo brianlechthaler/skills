@@ -425,8 +425,23 @@ Restart the coding tool or start a new session after installing.
 
 ---
 
+## Uninstall
+
+Remove skills or rules with the same agent IDs and paths used at install time:
+
+```bash
+python3 install.py --uninstall -s docker -a cursor -y
+python3 install.py --uninstall -s test -a cursor --as-rule -y
+python3 install.py --uninstall --all -a cursor -g -y
+```
+
+Use `-g` for global installs and `--as-rule` when skills were installed as rules. Omit `-a` to auto-detect agents. See [Installer — Uninstall](installer.md#uninstall) for details.
+
+---
+
 ## Related
 
-- [Installer](installer.md) — `install.py` usage, env vars, security
+- [Getting started](../getting-started.md) — first-time setup and uninstall quick start
+- [Installer](installer.md) — `install.py` install/uninstall, env vars, security
 - [USAGE.md](../../USAGE.md) — skills vs rules, update/remove, authoring tips
 - [Agent Skills open standard](https://agentskills.io/)
