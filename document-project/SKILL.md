@@ -55,7 +55,7 @@ project-root/
 
 **docs/** — depth: setup edge cases, feature behavior, configuration, troubleshooting, architecture.
 
-Link from README to `docs/` using relative paths (e.g. `[Features](docs/features/)`). Keep link text descriptive, not "click here".
+Link from README to `docs/` using relative paths (e.g. a "Features" link to `docs/features/`). Keep link text descriptive, not "click here".
 
 ## Workflow
 

@@ -6,6 +6,7 @@ on:
     paths:
       - install.py
       - skill_categories.py
+      - skill_validate.py
       - scripts/**
       - tests/**
       - pyproject.toml
@@ -16,6 +17,7 @@ on:
     paths:
       - install.py
       - skill_categories.py
+      - skill_validate.py
       - scripts/**
       - tests/**
       - pyproject.toml
@@ -42,5 +44,5 @@ jobs:
           cache-dependency-path: pyproject.toml
 
       - run: pip install ruff
-      - run: ruff check install.py skill_categories.py scripts/ tests/
-      - run: ruff format --check install.py skill_categories.py scripts/ tests/
+      - run: ruff check install.py skill_categories.py skill_validate.py scripts/ tests/
+      - run: ruff format --check install.py skill_categories.py skill_validate.py scripts/ tests/

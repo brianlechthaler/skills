@@ -187,7 +187,7 @@ Before marking MCP server work complete:
 - [ ] Sandbox/network policy documented in deployment config
 - [ ] Threat model updated if new tools touch sensitive data or external systems
 
-For security-focused diff review, also use [review-security](../review-security/SKILL.md) when available.
+For security-focused diff review, also use the `review-security` skill when available, or [security-audit](../security-audit/SKILL.md) for full-surface audits.
 
 ## Execution Order
 

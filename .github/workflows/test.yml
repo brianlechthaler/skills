@@ -5,21 +5,27 @@ on:
     branches: [main]
     paths:
       - install.py
+      - skill_categories.py
+      - skill_validate.py
       - scripts/**
       - tests/**
       - pyproject.toml
       - README.md
       - Dockerfile
+      - "**/SKILL.md"
       - .github/workflows/**
   pull_request:
     branches: [main]
     paths:
       - install.py
+      - skill_categories.py
+      - skill_validate.py
       - scripts/**
       - tests/**
       - pyproject.toml
       - README.md
       - Dockerfile
+      - "**/SKILL.md"
       - .github/workflows/**
   workflow_dispatch:
 
