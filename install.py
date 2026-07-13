@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install skills from this repository into popular AI coding tools."""
+"""Install portable Agent Skills from this repository into any supported AI coding agent."""
 
 from __future__ import annotations
 
@@ -605,7 +605,8 @@ def confirm(prompt: str, yes: bool) -> bool:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
-            "Install skills from this repository into AI coding tool skill directories."
+            "Install Agent Skills from this repository into any supported AI coding "
+            "agent (19 tools — not Cursor-specific). Run --list-agents for agent IDs."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(

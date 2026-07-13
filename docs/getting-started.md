@@ -1,6 +1,10 @@
 # Getting started
 
-Install reusable [Agent Skills](https://agentskills.io/) from this repository into Cursor, Claude Code, OpenCode, Codex, Windsurf, and 14 other supported tools.
+Install reusable [Agent Skills](https://agentskills.io/) from this repository into **any supported AI coding agent** — not just Cursor. The installer targets 19 tools (Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and more). Pick your agent with `-a <agent-id>`, or omit `-a` to auto-detect installed tools.
+
+```bash
+python3 install.py --list-agents   # see every supported agent and install path
+```
 
 ## Requirements
 
@@ -98,4 +102,4 @@ See [Installer — Uninstall](features/installer.md#uninstall) for behavior deta
 3. Add a row to the matching category table in `README.md`.
 4. Run `pytest tests/test_skills.py` to validate.
 
-See [Cursor's skill documentation](https://cursor.com/docs/context/skills) and the [document-project](../document-project/SKILL.md) skill for documentation conventions.
+See the [Agent Skills specification](https://agentskills.io/) for the portable format, your agent's docs (listed in [Supported coding tools](features/supported-tools.md)), and the [document-project](../document-project/SKILL.md) skill for documentation conventions.

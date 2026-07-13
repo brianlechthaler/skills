@@ -1,6 +1,8 @@
 # Installer
 
-Cross-platform Python script that installs and removes skills from this repository in AI coding tools on macOS, Windows, and Linux.
+Cross-platform Python script that installs and removes skills from this repository into **any supported AI coding agent** on macOS, Windows, and Linux.
+
+Skills are **not Cursor-specific** — `install.py` is the single entry point for deploying the same `SKILL.md` bundles to all 19 supported agents. Use `-a <agent-id>` to target one tool, repeat `-a` for several, or pass `-a all` for every agent. Run `python3 install.py --list-agents` to see agent IDs and install paths.
 
 ## Overview
 

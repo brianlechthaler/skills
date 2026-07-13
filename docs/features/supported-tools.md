@@ -1,6 +1,14 @@
 # Supported coding tools
 
-The installer (`install.py`) supports **19 AI coding tools**. Each tool has a stable **agent ID** (used with `-a` / `--agent`), skill install paths, and (for most tools) rule install paths when using `--as-rule`.
+Skills in this repository follow the [Agent Skills open standard](https://agentskills.io/) and work with **any coding agent listed below** — they are **not designed exclusively for Cursor**. The installer (`install.py`) deploys the same skill directories to each tool's discovery path with one command.
+
+The installer supports **19 AI coding tools**. Each tool has a stable **agent ID** (used with `-a` / `--agent`), skill install paths, and (for most tools) rule install paths when using `--as-rule`.
+
+```bash
+python3 install.py -s docker -a claude-code -y    # one skill, one agent
+python3 install.py --all -a cursor -a opencode -y # multiple agents
+python3 install.py --all -a all -y                # every supported agent
+```
 
 Run `python3 install.py --list-agents` anytime to print the current paths from `install.py`.
 

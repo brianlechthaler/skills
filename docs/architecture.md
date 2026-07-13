@@ -1,6 +1,8 @@
 # Architecture
 
-High-level view of how this repository is organized and how `install.py` moves skills into coding tools.
+High-level view of how this repository is organized and how `install.py` moves portable [Agent Skills](https://agentskills.io/) into **any supported coding agent** — not a single vendor or IDE.
+
+Each skill is a standard `<skill>/SKILL.md` directory. The installer maps that same source into tool-specific paths (`.cursor/skills/`, `.claude/skills/`, `.agents/skills/`, and 16 other layouts). See [Supported coding tools](features/supported-tools.md) for the full agent list.
 
 ## Repository layout
 
