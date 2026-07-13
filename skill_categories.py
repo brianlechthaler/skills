@@ -60,6 +60,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "add-mcp-server",
             "codebase-memory",
             "headroom",
+            "llmfit",
         ),
     ),
     (
