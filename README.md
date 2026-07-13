@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:37 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **37** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:38 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **38** reusable instructions that teach the agent specialized workflows.
 
-## Skills (37)
+## Skills (38)
 
 ### DevOps & CI (7)
 
@@ -70,6 +70,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **37*
 | [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
 | [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 | [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+| [llm-backend-select](llm-backend-select/SKILL.md) | Benchmark Ollama, llama.cpp, and vLLM on the user's system and pick the best backend for a chosen metric — tok/s, TTFT, KV cache, memory, or concurrency. |
 | [llmfit](llmfit/SKILL.md) | Pick the best local LLM for the user's hardware with llmfit — detect specs, score fit/speed/quality, and recommend runnable models. |
 
 ### Context & Efficiency (4)
