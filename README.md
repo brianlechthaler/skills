@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:33 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **33** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:34 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **34** reusable instructions that teach the agent specialized workflows.
 
-## Skills (33)
+## Skills (34)
 
 ### DevOps & CI (6)
 
@@ -32,11 +32,12 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **33*
 | [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
 | [document-screenshots](document-screenshots/SKILL.md) | Capture browser screenshots of the running project and embed them in `docs/images/` for documentation. |
 
-### Testing & Quality (4)
+### Testing & Quality (5)
 
 | Skill | Description |
 |-------|-------------|
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
+| [skill-test](skill-test/SKILL.md) | Create and maintain automated tests for agent skills — structure, links, install, and rule conversion. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
