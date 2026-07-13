@@ -28,6 +28,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         (
             "document-project",
             "document-screenshots",
+            "experimental-warning",
         ),
     ),
     (
