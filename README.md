@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:29 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **29** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:30 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30** reusable instructions that teach the agent specialized workflows.
 
-## Skills (29)
+## Skills (30)
 
 ### DevOps & CI (5)
 
@@ -15,13 +15,14 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **29*
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 
-### GitHub (3)
+### GitHub (4)
 
 | Skill | Description |
 |-------|-------------|
 | [github-publish](github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
 | [github-issues](github-issues/SKILL.md) | Triage open GitHub issues, implement one fix per issue with its own draft PR, comment on progress, and close issues when work is complete. |
 | [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
+| [github-merge-all](github-merge-all/SKILL.md) | Merge every open pull request: sync with the default branch, resolve conflicts, pass CI, and land PRs one at a time. |
 
 ### Documentation (2)
 
