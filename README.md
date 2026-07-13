@@ -48,7 +48,7 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **33*
 | [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
 | [compiled-performance](compiled-performance/SKILL.md) | Profile compiled/native applications, analyze CPU/memory/I/O bottlenecks, recommend optimizations, and optionally implement fixes with measured before/after gains. |
 | [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
-| [hardware-metrics](hardware-metrics/SKILL.md) | Measure CPU, RAM, GPU utilization, and hardware temperatures under load; report saturation, thermal headroom, and throttling with structured before/after snapshots. |
+| [hardware-metrics](hardware-metrics/SKILL.md) | Measure CPU, RAM, GPU, disk I/O, and hardware temperatures under load; report saturation, thermal and storage headroom, and throttling with structured before/after snapshots. |
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
 
 ### Security (3)

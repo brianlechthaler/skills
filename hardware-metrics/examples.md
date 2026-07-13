@@ -20,7 +20,7 @@ sudo sensors-detect --auto
 sensors
 ```
 
-Verify: `sensors`, `nvidia-smi`, `htop --version`, `mpstat -V`
+Verify: `sensors`, `nvidia-smi`, `htop --version`, `mpstat -V`, `iostat -V`
 
 ## Linux — Idle Snapshot
 
@@ -31,6 +31,12 @@ mpstat 1 3
 
 echo "=== Memory ==="
 free -h
+
+echo "=== Disk layout ==="
+lsblk -o NAME,MODEL,ROTA,SIZE,MOUNTPOINT 2>/dev/null || df -h
+
+echo "=== Disk I/O ==="
+iostat -xz 1 3 2>/dev/null || echo "install sysstat for iostat"
 
 echo "=== Temperatures ==="
 sensors 2>/dev/null || grep -r . /sys/class/thermal/thermal_zone*/temp 2>/dev/null | head
@@ -53,11 +59,63 @@ wait "$WPID"
 Or sample system-wide while a command runs:
 
 ```bash
-( while true; do date -Is; mpstat 1 1 | tail -1; free -h | awk '/Mem:/'; nvidia-smi --query-gpu=utilization.gpu,memory.used,temperature.gpu --format=csv,noheader 2>/dev/null; sleep 2; done ) &
+( while true; do date -Is; mpstat 1 1 | tail -1; free -h | awk '/Mem:/'; iostat -xz 1 1 2>/dev/null | awk 'NR>3 && $1 !~ /^(Device|loop)/ {print}'; nvidia-smi --query-gpu=utilization.gpu,memory.used,temperature.gpu --format=csv,noheader 2>/dev/null; sleep 2; done ) &
 MON=$!
 ./my-workload --args
 kill "$MON" 2>/dev/null
 ```
+
+## Linux — Disk I/O Profiling
+
+Identify devices and whether they are rotational (HDD) or SSD/NVMe (`ROTA=0`):
+
+```bash
+lsblk -o NAME,MODEL,ROTA,SIZE,MOUNTPOINT
+df -h
+```
+
+Idle or under-load snapshot — extended stats per device (`-x` omit idle, `-z` omit zero-activity):
+
+```bash
+# Columns: r/s w/s rkB/s wkB/s await r_await w_await %util
+iostat -xz 1 10
+```
+
+Per-process disk I/O (requires root or `CAP_SYS_ADMIN`):
+
+```bash
+sudo iotop -o -b -n 30 -d 1
+# or for a specific PID:
+pidstat -d -p PID 1 30
+```
+
+Time series to CSV for sustained runs:
+
+```bash
+iostat -xz 1 120 > disk-metrics.txt
+```
+
+Sustained disk benchmark (optional — measures raw device throughput, not workload I/O):
+
+```bash
+# Quick sequential read test on a spare file (adjust path and size)
+fio --name=seqread --filename=/tmp/fio-test --size=1G --bs=1M --rw=read --iodepth=32 --direct=1 --numjobs=1
+
+# Mixed random read/write — closer to database workloads
+fio --name=randrw --filename=/tmp/fio-test --size=1G --bs=4k --rw=randrw --rwmixread=70 --iodepth=16 --direct=1 --numjobs=4 --runtime=30 --time_based
+```
+
+Remove test files after benchmarking. Do not run destructive `fio` tests on production data volumes without explicit approval.
+
+Interpret key `iostat` fields:
+
+| Field | Meaning | Saturation signal |
+|-------|---------|-------------------|
+| `rkB/s`, `wkB/s` | Read/write throughput | Compare to device spec or baseline |
+| `r/s`, `w/s` | IOPS | High on HDD with small random writes |
+| `%util` | Device busy time | Near 100% = saturated |
+| `await` | Average I/O wait (ms) | Rising under load = latency pressure |
+| `avgqu-sz` | Average queue depth | Sustained > 1 on single queue device |
 
 ## Linux — NVIDIA GPU Time Series
 
@@ -107,6 +165,9 @@ done
 top -l 1 -s 0 | head -20
 vm_stat
 
+# Disk I/O (requires iostat from optional Xcode CLT or third-party tools)
+iostat -d 1 5 2>/dev/null || diskutil info disk0 | grep -E 'Device|Protocol|Solid State'
+
 # CPU package / SMC sampling (requires sudo)
 sudo powermetrics --samplers cpu_power -i 1000 -n 30
 
@@ -125,6 +186,9 @@ Get-Counter '\Processor(_Total)\% Processor Time' -SampleInterval 1 -MaxSamples 
 # Memory
 Get-Counter '\Memory\Available MBytes' -SampleInterval 1 -MaxSamples 5
 
+# Disk I/O
+Get-Counter '\PhysicalDisk(*)\Disk Reads/sec','\PhysicalDisk(*)\Disk Writes/sec','\PhysicalDisk(*)\% Disk Time','\PhysicalDisk(*)\Avg. Disk sec/Read','\PhysicalDisk(*)\Avg. Disk sec/Write' -SampleInterval 1 -MaxSamples 5
+
 # NVIDIA
 nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv
 ```
@@ -133,7 +197,8 @@ nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu 
 
 - **Containers** without `--gpus all` (or equivalent) will not show GPU metrics inside the container.
 - **Temperature sensors** may be hidden in VMs; use hypervisor/host metrics when guest `sensors` is empty.
-- **WSL2** reports Linux memory through Windows host limits; GPU via WSL CUDA when configured.
+- **Disk metrics** in containers often reflect the host block device or overlay filesystem — confirm which mount path the workload uses (`df -h`, `mount`).
+- **WSL2** reports Linux memory through Windows host limits; GPU via WSL CUDA when configured; disk I/O may reflect the Windows backing VHD.
 
 Example GPU-enabled container check:
 
@@ -156,8 +221,9 @@ GPU still requires vendor tools (`nvidia-smi`, `pynvml`) — do not infer GPU ut
 
 ## Correlating with Application Profiling
 
-When hardware metrics show low utilization but slow runtime:
+When hardware metrics show low CPU/GPU utilization but slow runtime:
 
-1. Note CPU/GPU/RAM headroom in this report
-2. Switch to [compiled-performance](../compiled-performance/SKILL.md) or [interpreted-performance](../interpreted-performance/SKILL.md) for hot-path analysis
-3. Re-run hardware metrics after fixes if saturation was near limits
+1. Check disk `%util` and `await` — disk saturation is a common cause of low CPU with slow wall time
+2. Note CPU/GPU/RAM/disk headroom in this report
+3. Switch to [compiled-performance](../compiled-performance/SKILL.md) or [interpreted-performance](../interpreted-performance/SKILL.md) for hot-path and per-syscall I/O analysis
+4. Re-run hardware metrics after fixes if saturation was near limits
