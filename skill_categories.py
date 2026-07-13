@@ -37,6 +37,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "lint",
             "browser-test",
             "playwright-test",
+            "skill-quality",
         ),
     ),
     (

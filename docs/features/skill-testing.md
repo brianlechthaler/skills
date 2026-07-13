@@ -4,7 +4,7 @@ Every skill in this repository is validated by automated tests in `tests/test_sk
 
 ## What is tested
 
-Each of the 33 skills (`<skill>/SKILL.md`) is exercised individually with parametrized pytest cases. For every skill, the suite verifies:
+Each skill (`<skill>/SKILL.md`) is exercised individually with parametrized pytest cases. For every skill, the suite verifies:
 
 | Check | How |
 |-------|-----|
