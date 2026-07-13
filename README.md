@@ -1,15 +1,16 @@
 # skills
 
-<!-- skill-count:36 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **36** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:37 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **37** reusable instructions that teach the agent specialized workflows.
 
-## Skills (36)
+## Skills (37)
 
-### DevOps & CI (6)
+### DevOps & CI (7)
 
 | Skill | Description |
 |-------|-------------|
 | [docker](docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
+| [docker-optimize](docker-optimize/SKILL.md) | Reduce Docker image size: baseline layers and bytes, apply multi-stage builds, smaller bases, .dockerignore, and dependency pruning until gains plateau. |
 | [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
