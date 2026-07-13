@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:35 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **35** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:36 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **36** reusable instructions that teach the agent specialized workflows.
 
-## Skills (35)
+## Skills (36)
 
 ### DevOps & CI (6)
 
@@ -25,12 +25,13 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **35*
 | [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 | [github-merge-all](github-merge-all/SKILL.md) | Merge every open pull request: sync with the default branch, resolve conflicts, pass CI, and land PRs one at a time. |
 
-### Documentation (2)
+### Documentation (3)
 
 | Skill | Description |
 |-------|-------------|
 | [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
 | [document-screenshots](document-screenshots/SKILL.md) | Capture browser screenshots of the running project and embed them in `docs/images/` for documentation. |
+| [experimental-warning](experimental-warning/SKILL.md) | Add experimental, alpha, beta, or preview warning banners on every user-facing surface — web UI, CLI, TUI, API docs, and more. |
 
 ### Testing & Quality (5)
 
