@@ -18,6 +18,8 @@ from urllib.error import URLError
 from urllib.parse import urlparse
 from urllib.request import urlopen
 
+from skill_categories import SKILL_CATEGORIES, validate_skill_categories
+
 DEFAULT_GITHUB_REPO = "brianlechthaler/skills"
 DEFAULT_GITHUB_BRANCH = "main"
 SKILL_NAME_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
@@ -185,6 +187,18 @@ def list_skills(root: Path) -> list[str]:
     if not found:
         err(f"no skills found in {root} (expected <skill>/SKILL.md directories)")
     return found
+
+
+def list_skills_by_category(root: Path) -> None:
+    found = list_skills(root)
+    validate_skill_categories(found)
+    found_set = set(found)
+    for category, skills in SKILL_CATEGORIES:
+        category_skills = [skill for skill in skills if skill in found_set]
+        print(f"{category} ({len(category_skills)})")
+        for skill in category_skills:
+            print(f"  {skill}")
+        print()
 
 
 def list_agents() -> None:
@@ -528,6 +542,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--list", action="store_true", help="List skills in this repo")
     parser.add_argument(
+        "--list-by-category",
+        action="store_true",
+        help="List skills grouped by high-level category",
+    )
+    parser.add_argument(
         "--list-agents",
         action="store_true",
         help="List supported agents and install paths",
@@ -641,11 +660,14 @@ def main(argv: list[str] | None = None) -> int:
         install_all_skills=args.install_all,
     )
 
-    if args.list:
+    if args.list or args.list_by_category:
         try:
             fetch_repo_if_needed(options)
-            for skill in list_skills(options.repo_root):
-                print(skill)
+            if args.list_by_category:
+                list_skills_by_category(options.repo_root)
+            else:
+                for skill in list_skills(options.repo_root):
+                    print(skill)
         finally:
             cleanup(options)
         return 0

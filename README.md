@@ -5,37 +5,79 @@ Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **29*
 
 ## Skills (29)
 
+### DevOps & CI (5)
+
 | Skill | Description |
 |-------|-------------|
 | [docker](docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
 | [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
-| [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
-| [document-screenshots](document-screenshots/SKILL.md) | Capture browser screenshots of the running project and embed them in `docs/images/` for documentation. |
-| [github-publish](github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
-| [github-issues](github-issues/SKILL.md) | Triage open GitHub issues, implement one fix per issue with its own draft PR, comment on progress, and close issues when work is complete. |
-| [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
+
+### GitHub (3)
+
+| Skill | Description |
+|-------|-------------|
+| [github-publish](github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
+| [github-issues](github-issues/SKILL.md) | Triage open GitHub issues, implement one fix per issue with its own draft PR, comment on progress, and close issues when work is complete. |
+| [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
+
+### Documentation (2)
+
+| Skill | Description |
+|-------|-------------|
+| [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
+| [document-screenshots](document-screenshots/SKILL.md) | Capture browser screenshots of the running project and embed them in `docs/images/` for documentation. |
+
+### Testing & Quality (4)
+
+| Skill | Description |
+|-------|-------------|
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
+
+### Performance (4)
+
+| Skill | Description |
+|-------|-------------|
 | [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
-| [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
-| [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
-| [security-audit](security-audit/SKILL.md) | Perform aggressive full-surface security audits with optional auto-remediation of discovered vulnerabilities. |
-| [orchestrate](orchestrate/SKILL.md) | Plan comprehensively and run subagents in parallel by phase, respecting dependencies and avoiding race conditions. |
-| [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
-| [toonify](toonify/SKILL.md) | Serialize structured data as TOON instead of JSON to cut prompt tokens 30–60% with lossless encode/decode and schema templates. |
-| [terse](terse/SKILL.md) | Minimize tokens in user-facing prose — fewest words needed for status, results, and next steps. |
-| [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
-| [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
 | [compiled-performance](compiled-performance/SKILL.md) | Profile compiled/native applications, analyze CPU/memory/I/O bottlenecks, recommend optimizations, and optionally implement fixes with measured before/after gains. |
 | [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
-| [prompt-conciseness](prompt-conciseness/SKILL.md) | Shorten system prompts and agent instructions to save tokens while preserving every critical policy and capability. |
+| [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
+
+### Security (3)
+
+| Skill | Description |
+|-------|-------------|
+| [security-audit](security-audit/SKILL.md) | Perform aggressive full-surface security audits with optional auto-remediation of discovered vulnerabilities. |
+| [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
+
+### MCP & Integrations (3)
+
+| Skill | Description |
+|-------|-------------|
+| [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
+| [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
+| [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+
+### Context & Efficiency (4)
+
+| Skill | Description |
+|-------|-------------|
+| [terse](terse/SKILL.md) | Minimize tokens in user-facing prose — fewest words needed for status, results, and next steps. |
+| [prompt-conciseness](prompt-conciseness/SKILL.md) | Shorten system prompts and agent instructions to save tokens while preserving every critical policy and capability. |
 | [simple-code](simple-code/SKILL.md) | Write the simplest possible code with the fewest lines — no redundant logic, abstractions, or helpers. |
+| [toonify](toonify/SKILL.md) | Serialize structured data as TOON instead of JSON to cut prompt tokens 30–60% with lossless encode/decode and schema templates. |
+
+### Orchestration (1)
+
+| Skill | Description |
+|-------|-------------|
+| [orchestrate](orchestrate/SKILL.md) | Plan comprehensively and run subagents in parallel by phase, respecting dependencies and avoiding race conditions. |
 
 ## Installation
 
@@ -64,6 +106,7 @@ Options:
 | Flag | Description |
 |------|-------------|
 | `--list` | Show skills in this repo |
+| `--list-by-category` | Show skills grouped by high-level category |
 | `--list-agents` | Show supported tools and install paths |
 | `-s, --skill NAME` | Install specific skill(s) |
 | `--all` | Install every skill |
@@ -89,7 +132,8 @@ Each skill is a directory containing a `SKILL.md` file. Cursor discovers skills 
 
 1. Create a directory named after the skill (lowercase, hyphens).
 2. Add a `SKILL.md` with YAML frontmatter (`name`, `description`) and instructions.
-3. Update this README with a row in the skills table. The skill count in the intro and `## Skills (N)` heading is synced automatically on merge to `main`; run `python scripts/sync_readme_skill_count.py` locally if you want to update it in your branch.
+3. Add the skill to `skill_categories.py` under the appropriate high-level category.
+4. Update this README with a row in the matching category table. The skill count in the intro and `## Skills (N)` heading is synced automatically on merge to `main`; run `python scripts/sync_readme_skill_count.py` locally if you want to update it in your branch.
 
 See [Cursor's skill documentation](https://cursor.com/docs/context/skills) for authoring guidelines.
 

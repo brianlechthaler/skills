@@ -527,6 +527,12 @@ def test_main_list(repo_root: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     assert install.main(["--list"]) == 0
 
 
+def test_main_list_by_category(monkeypatch: pytest.MonkeyPatch) -> None:
+    root = Path(__file__).resolve().parent.parent
+    monkeypatch.setenv("SKILLS_REPO_ROOT", str(root))
+    assert install.main(["--list-by-category"]) == 0
+
+
 def test_main_install(
     repo_root: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from install import discover_skills  # noqa: E402
+from skill_categories import validate_skill_categories  # noqa: E402
 
 README = ROOT / "README.md"
 COUNT_MARKER = re.compile(r"<!-- skill-count:\d+ -->")
@@ -37,7 +38,9 @@ def expected_readme_text(text: str, count: int) -> str:
 
 
 def sync_readme(readme: Path = README, *, check: bool = False) -> int:
-    count = len(discover_skills(ROOT))
+    discovered = discover_skills(ROOT)
+    validate_skill_categories(discovered)
+    count = len(discovered)
     text = readme.read_text(encoding="utf-8")
     updated = expected_readme_text(text, count)
 
