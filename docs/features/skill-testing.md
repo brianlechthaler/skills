@@ -2,9 +2,11 @@
 
 Every skill in this repository is validated by automated tests in `tests/test_skills.py`. The checks run in CI on every push and pull request that touches skills, tests, or validation code.
 
+For authoring and extending skill tests, see the [skill-test](../../skill-test/SKILL.md) skill.
+
 ## What is tested
 
-Each of the 34 skills (`<skill>/SKILL.md`) is exercised individually with parametrized pytest cases. For every skill, the suite verifies:
+Each skill (`<skill>/SKILL.md`) is exercised individually with parametrized pytest cases. For every skill, the suite verifies:
 
 | Check | How |
 |-------|-----|

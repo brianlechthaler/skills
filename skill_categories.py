@@ -29,15 +29,18 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         (
             "document-project",
             "document-screenshots",
+            "experimental-warning",
         ),
     ),
     (
         "Testing & Quality",
         (
             "test",
+            "skill-test",
             "lint",
             "browser-test",
             "playwright-test",
+            "skill-quality",
         ),
     ),
     (
