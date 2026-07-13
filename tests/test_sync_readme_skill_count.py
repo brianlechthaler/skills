@@ -52,7 +52,9 @@ def test_expected_readme_text_requires_markers(sync_module) -> None:
         sync_module.expected_readme_text("# skills\n", 1)
 
 
-def test_sync_readme_updates_when_out_of_sync(sync_module, tmp_path: Path) -> None:
+def test_sync_readme_updates_when_out_of_sync(
+    sync_module, tmp_path: Path, monkeypatch
+) -> None:
     readme = tmp_path / "README.md"
     readme.write_text(SAMPLE_README, encoding="utf-8")
 
@@ -64,6 +66,9 @@ def test_sync_readme_updates_when_out_of_sync(sync_module, tmp_path: Path) -> No
 
     original_root = sync_module.ROOT
     sync_module.ROOT = repo_root
+    monkeypatch.setattr(
+        sync_module, "validate_skill_categories", lambda _discovered: None
+    )
     try:
         assert sync_module.sync_readme(readme) == 0
         text = readme.read_text(encoding="utf-8")
@@ -74,7 +79,9 @@ def test_sync_readme_updates_when_out_of_sync(sync_module, tmp_path: Path) -> No
         sync_module.ROOT = original_root
 
 
-def test_sync_readme_check_fails_when_out_of_sync(sync_module, tmp_path: Path) -> None:
+def test_sync_readme_check_fails_when_out_of_sync(
+    sync_module, tmp_path: Path, monkeypatch
+) -> None:
     readme = tmp_path / "README.md"
     readme.write_text(SAMPLE_README, encoding="utf-8")
 
@@ -86,6 +93,9 @@ def test_sync_readme_check_fails_when_out_of_sync(sync_module, tmp_path: Path) -
 
     original_root = sync_module.ROOT
     sync_module.ROOT = repo_root
+    monkeypatch.setattr(
+        sync_module, "validate_skill_categories", lambda _discovered: None
+    )
     try:
         assert sync_module.sync_readme(readme, check=True) == 1
         assert readme.read_text(encoding="utf-8") == SAMPLE_README
