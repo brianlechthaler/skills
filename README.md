@@ -1,9 +1,9 @@
 # skills
 
-<!-- skill-count:30 -->
-Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **30** reusable instructions that teach the agent specialized workflows.
+<!-- skill-count:31 -->
+Personal [Cursor Agent Skills](https://cursor.com/docs/context/skills) — **31** reusable instructions that teach the agent specialized workflows.
 
-## Skills (30)
+## Skills (31)
 
 ### DevOps & CI (6)
 
