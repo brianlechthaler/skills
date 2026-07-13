@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install portable Agent Skills from this repository into any supported AI coding agent."""
+"""Install portable Agent Skills from this repo into any supported AI coding agent."""
 
 from __future__ import annotations
 
