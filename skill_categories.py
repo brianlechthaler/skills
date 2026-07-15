@@ -71,6 +71,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "llm-backend-select",
             "llmfit",
             "slack-daily-plan",
+            "gmail-daily-plan",
         ),
     ),
     (
