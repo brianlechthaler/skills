@@ -30,6 +30,7 @@ Turn **Gmail signal into a ranked daily plan**. Scan inbox, unread, important/st
 | "Prioritize my email" / standup prep from Gmail | Implementing code with no planning ask |
 | Catch up after time off via Gmail signals | Bulk sending replies without a plan request |
 | Slack+email day plan when user wants Gmail | Slack-only triage (use [slack-daily-plan](../slack-daily-plan/SKILL.md)) |
+| Gmail-only triage when user locks to email | Day plan across Slack + email + Jira (use [daily-plan](../daily-plan/SKILL.md)) |
 
 When unsure and the user mentions Gmail/inbox/email + priorities/plan/day, **apply this skill**.
 
@@ -214,7 +215,7 @@ After delivering, ask whether to:
 
 - Start on **P0/P1** in the codebase
 - Draft Gmail replies for waiting threads
-- Re-run with a different window, label set, or combine with [slack-daily-plan](../slack-daily-plan/SKILL.md)
+- Re-run with a different window, label set, or combine sources via [daily-plan](../daily-plan/SKILL.md)
 
 Do not start implementation or send messages until the user confirms — unless they already said "plan and then do P0".
 
@@ -241,6 +242,7 @@ Do not start implementation or send messages until the user confirms — unless 
 
 ## Cross-References
 
+- Multi-source daily plan (Slack + Gmail + Jira): [daily-plan](../daily-plan/SKILL.md)
 - Slack-sourced daily plan: [slack-daily-plan](../slack-daily-plan/SKILL.md)
 - Jira-sourced daily plan: [jira-daily-plan](../jira-daily-plan/SKILL.md)
 - Multi-step execution after planning: [orchestrate](../orchestrate/SKILL.md)
