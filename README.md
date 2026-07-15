@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:41 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **41** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:42 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **42** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (41)
+## Skills (42)
 
 ### DevOps & CI (8)
 
@@ -29,13 +29,14 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [github-release](github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 | [github-merge-all](github-merge-all/SKILL.md) | Merge every open pull request: sync with the default branch, resolve conflicts, pass CI, and land PRs one at a time. |
 
-### Documentation (3)
+### Documentation (4)
 
 | Skill | Description |
 |-------|-------------|
 | [document-project](document-project/SKILL.md) | Document projects with a short README linked to `docs/`, per-feature docs, diagrams, and screenshots. |
 | [document-screenshots](document-screenshots/SKILL.md) | Capture browser screenshots of the running project and embed them in `docs/images/` for documentation. |
 | [experimental-warning](experimental-warning/SKILL.md) | Add experimental, alpha, beta, or preview warning banners on every user-facing surface — web UI, CLI, TUI, API docs, and more. |
+| [hardware-requirements](hardware-requirements/SKILL.md) | Infer minimum and recommended CPU, RAM, disk, and GPU from the project stack, then ask before adding specs to docs. |
 
 ### Testing & Quality (5)
 
