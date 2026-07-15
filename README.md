@@ -1,19 +1,20 @@
 # skills
 
-<!-- skill-count:39 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **39** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:40 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **40** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (39)
+## Skills (40)
 
-### DevOps & CI (7)
+### DevOps & CI (8)
 
 | Skill | Description |
 |-------|-------------|
 | [docker](docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
 | [docker-optimize](docker-optimize/SKILL.md) | Reduce Docker image size: baseline layers and bytes, apply multi-stage builds, smaller bases, .dockerignore, and dependency pruning until gains plateau. |
 | [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
+| [cloud-init](cloud-init/SKILL.md) | Generate cloud-init `#cloud-config` user-data for Ubuntu, Debian, Rocky/Alma/RHEL, Amazon Linux, and other cloud images — users, SSH, packages, and first-boot deploy. |
 | [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [ci-debug](ci-debug/SKILL.md) | Debug GitHub Actions failures — fetch logs, classify errors, reproduce locally, and optionally fix the underlying issue. |
