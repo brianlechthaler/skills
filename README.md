@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:38 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **38** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:39 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **39** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (38)
+## Skills (39)
 
 ### DevOps & CI (7)
 
@@ -65,7 +65,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
 
-### MCP & Integrations (4)
+### MCP & Integrations (6)
 
 | Skill | Description |
 |-------|-------------|
@@ -74,6 +74,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
 | [llm-backend-select](llm-backend-select/SKILL.md) | Benchmark Ollama, llama.cpp, and vLLM on the user's system and pick the best backend for a chosen metric — tok/s, TTFT, KV cache, memory, or concurrency. |
 | [llmfit](llmfit/SKILL.md) | Pick the best local LLM for the user's hardware with llmfit — detect specs, score fit/speed/quality, and recommend runnable models. |
+| [slack-daily-plan](slack-daily-plan/SKILL.md) | Scan Slack mentions, DMs, and priority channels, then produce a ranked high-level plan for what to accomplish today. |
 
 ### Context & Efficiency (4)
 
