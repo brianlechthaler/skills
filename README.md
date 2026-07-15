@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:42 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **42** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:43 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **43** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (42)
+## Skills (43)
 
 ### DevOps & CI (8)
 
@@ -67,7 +67,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
 
-### MCP & Integrations (7)
+### MCP & Integrations (8)
 
 | Skill | Description |
 |-------|-------------|
@@ -78,6 +78,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [llmfit](llmfit/SKILL.md) | Pick the best local LLM for the user's hardware with llmfit — detect specs, score fit/speed/quality, and recommend runnable models. |
 | [slack-daily-plan](slack-daily-plan/SKILL.md) | Scan Slack mentions, DMs, and priority channels, then produce a ranked high-level plan for what to accomplish today. |
 | [gmail-daily-plan](gmail-daily-plan/SKILL.md) | Scrape or read Gmail inbox, unread, and important mail, then produce a ranked high-level plan for what to accomplish today. |
+| [jira-daily-plan](jira-daily-plan/SKILL.md) | Scrape or read Jira assigned issues, sprint boards, and blockers, then produce a ranked high-level plan for what to accomplish today. |
 
 ### Context & Efficiency (4)
 

@@ -74,7 +74,7 @@ If neither MCP nor a usable token works:
 2. Ask the user to connect Slack MCP or provide a read token / paste the threads they care about.
 3. Do **not** fabricate a Slack-backed plan.
 
-Optional: offer a lightweight plan from GitHub ([github-issues](../github-issues/SKILL.md)) or calendar notes only if the user agrees — label it as **not Slack-sourced**.
+Optional: offer a lightweight plan from Gmail ([gmail-daily-plan](../gmail-daily-plan/SKILL.md)), Jira ([jira-daily-plan](../jira-daily-plan/SKILL.md)), GitHub ([github-issues](../github-issues/SKILL.md)), or calendar notes only if the user agrees — label it as **not Slack-sourced**.
 
 ## Workflow Checklist
 
@@ -225,6 +225,8 @@ Do not start implementation or send messages until the user confirms — unless 
 
 ## Cross-References
 
+- Gmail-sourced daily plan: [gmail-daily-plan](../gmail-daily-plan/SKILL.md)
+- Jira-sourced daily plan: [jira-daily-plan](../jira-daily-plan/SKILL.md)
 - Multi-step execution after planning: [orchestrate](../orchestrate/SKILL.md)
 - Repo issue backlog (non-Slack): [github-issues](../github-issues/SKILL.md)
 - Shipping resulting code work: [github-publish](../github-publish/SKILL.md)
