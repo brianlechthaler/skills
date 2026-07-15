@@ -73,6 +73,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "llmfit",
             "slack-daily-plan",
             "gmail-daily-plan",
+            "jira-daily-plan",
         ),
     ),
     (

@@ -80,7 +80,7 @@ If neither MCP nor a usable scrape/API path works:
 2. Ask the user to connect Gmail MCP, provide OAuth/IMAP access, sign in for browser scrape, or paste the threads they care about.
 3. Do **not** fabricate a Gmail-backed plan.
 
-Optional: offer a lightweight plan from Slack ([slack-daily-plan](../slack-daily-plan/SKILL.md)) or GitHub ([github-issues](../github-issues/SKILL.md)) only if the user agrees — label it as **not Gmail-sourced**.
+Optional: offer a lightweight plan from Slack ([slack-daily-plan](../slack-daily-plan/SKILL.md)), Jira ([jira-daily-plan](../jira-daily-plan/SKILL.md)), or GitHub ([github-issues](../github-issues/SKILL.md)) only if the user agrees — label it as **not Gmail-sourced**.
 
 ## Workflow Checklist
 
@@ -242,6 +242,7 @@ Do not start implementation or send messages until the user confirms — unless 
 ## Cross-References
 
 - Slack-sourced daily plan: [slack-daily-plan](../slack-daily-plan/SKILL.md)
+- Jira-sourced daily plan: [jira-daily-plan](../jira-daily-plan/SKILL.md)
 - Multi-step execution after planning: [orchestrate](../orchestrate/SKILL.md)
 - Repo issue backlog (non-email): [github-issues](../github-issues/SKILL.md)
 - Shipping resulting code work: [github-publish](../github-publish/SKILL.md)
