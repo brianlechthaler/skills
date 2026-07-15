@@ -30,6 +30,7 @@ Turn **Jira signal into a ranked daily plan**. Scrape or read the assignment que
 | "Prioritize my Jira" / standup prep from the board | Implementing code with no planning ask |
 | Catch up after time off via Jira signals | Bulk status transitions without a plan request |
 | Scraping a Jira Cloud/Server board the user is signed into | Slack- or Gmail-only triage (use those skills) |
+| Jira-only triage when user locks to tickets/board | Day plan across Slack + email + Jira (use [daily-plan](../daily-plan/SKILL.md)) |
 
 When unsure and the user mentions Jira/tickets/sprint/board + priorities/plan/day, **apply this skill**.
 
@@ -251,7 +252,7 @@ After delivering, ask whether to:
 - Start on **P0/P1** in the codebase
 - Draft Jira comments for waiting threads
 - Transition status / update estimates (only with explicit approval)
-- Re-run with a different board, filter, or combine with [slack-daily-plan](../slack-daily-plan/SKILL.md) / [gmail-daily-plan](../gmail-daily-plan/SKILL.md)
+- Re-run with a different board, filter, or combine sources via [daily-plan](../daily-plan/SKILL.md)
 
 Do not start implementation or mutate issues until the user confirms — unless they already said "plan and then do P0".
 
@@ -279,6 +280,7 @@ Do not start implementation or mutate issues until the user confirms — unless 
 
 ## Cross-References
 
+- Multi-source daily plan (Slack + Gmail + Jira): [daily-plan](../daily-plan/SKILL.md)
 - Slack-sourced daily plan: [slack-daily-plan](../slack-daily-plan/SKILL.md)
 - Gmail-sourced daily plan: [gmail-daily-plan](../gmail-daily-plan/SKILL.md)
 - Multi-step execution after planning: [orchestrate](../orchestrate/SKILL.md)

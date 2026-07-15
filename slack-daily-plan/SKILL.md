@@ -29,6 +29,7 @@ Turn **Slack signal into a ranked daily plan**. Scan mentions, DMs, key channels
 | Triage mentions / DMs into a ranked plan | User already gave an explicit ordered task list |
 | "Prioritize my Slack" / standup prep from Slack | Implementing code with no planning ask |
 | Catch up after time off via Slack signals | Sending bulk Slack replies without a plan request |
+| Slack-only triage when user locks to Slack | Day plan across Slack + email + Jira (use [daily-plan](../daily-plan/SKILL.md)) |
 
 When unsure and the user mentions Slack + priorities/plan/day, **apply this skill**.
 
@@ -199,7 +200,7 @@ After delivering, ask whether to:
 
 - Start on **P0/P1** in the codebase
 - Draft Slack replies for waiting threads
-- Re-run with a different window or channel set
+- Re-run with a different window or channel set, or combine sources via [daily-plan](../daily-plan/SKILL.md)
 
 Do not start implementation or send messages until the user confirms — unless they already said "plan and then do P0".
 
@@ -225,6 +226,7 @@ Do not start implementation or send messages until the user confirms — unless 
 
 ## Cross-References
 
+- Multi-source daily plan (Slack + Gmail + Jira): [daily-plan](../daily-plan/SKILL.md)
 - Gmail-sourced daily plan: [gmail-daily-plan](../gmail-daily-plan/SKILL.md)
 - Jira-sourced daily plan: [jira-daily-plan](../jira-daily-plan/SKILL.md)
 - Multi-step execution after planning: [orchestrate](../orchestrate/SKILL.md)

@@ -74,6 +74,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "slack-daily-plan",
             "gmail-daily-plan",
             "jira-daily-plan",
+            "daily-plan",
         ),
     ),
     (
