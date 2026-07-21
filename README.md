@@ -7,19 +7,23 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 
 ## Skills (47)
 
-### DevOps & CI (9)
+### Containers & Cloud (4)
 
 | Skill | Description |
 |-------|-------------|
+| [cloud-init](cloud-init/SKILL.md) | Generate cloud-init `#cloud-config` user-data for Ubuntu, Debian, Rocky/Alma/RHEL, Amazon Linux, and other cloud images — users, SSH, packages, and first-boot deploy. |
+| [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
 | [docker](docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
 | [docker-optimize](docker-optimize/SKILL.md) | Reduce Docker image size: baseline layers and bytes, apply multi-stage builds, smaller bases, .dockerignore, and dependency pruning until gains plateau. |
-| [compose-deploy](compose-deploy/SKILL.md) | Generate a Docker Compose deployment by detecting the project stack and backing services (Postgres, Redis, etc.). Creates compose.yaml, Dockerfiles, and .env.example. |
-| [cloud-init](cloud-init/SKILL.md) | Generate cloud-init `#cloud-config` user-data for Ubuntu, Debian, Rocky/Alma/RHEL, Amazon Linux, and other cloud images — users, SSH, packages, and first-boot deploy. |
-| [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
-| [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
+
+### CI/CD (4)
+
+| Skill | Description |
+|-------|-------------|
 | [ci-debug](ci-debug/SKILL.md) | Debug GitHub Actions failures — fetch logs, classify errors, reproduce locally, and optionally fix the underlying issue. |
+| [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
-| [opentelemetry](opentelemetry/SKILL.md) | Implement OpenTelemetry observability — traces, metrics, and logs with OTLP export, auto-instrumentation, resource attributes, and collector wiring. |
+| [github-workflows](github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 
 ### GitHub (4)
 
@@ -39,27 +43,33 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [experimental-warning](experimental-warning/SKILL.md) | Add experimental, alpha, beta, or preview warning banners on every user-facing surface — web UI, CLI, TUI, API docs, and more. |
 | [hardware-requirements](hardware-requirements/SKILL.md) | Infer minimum and recommended CPU, RAM, disk, and GPU from the project stack, then ask before adding specs to docs. |
 
-### Testing & Quality (5)
+### Testing (4)
 
 | Skill | Description |
 |-------|-------------|
-| [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
-| [skill-create](skill-create/SKILL.md) | Create new agent skills from scratch — author SKILL.md, register in the repo, validate, and merge when CI is green. |
-| [skill-test](skill-test/SKILL.md) | Create and maintain automated tests for agent skills — structure, links, install, and rule conversion. |
-| [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
+| [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [playwright-test](playwright-test/SKILL.md) | Test web apps with Playwright for scripted browser verification, smoke checks, and E2E flows. |
-| [skill-quality](skill-quality/SKILL.md) | Analyze agent skill quality, score against a rubric, suggest prioritized improvements, and optionally implement fixes. |
+| [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
 
-### Performance (5)
+### Agent Skills (3)
 
 | Skill | Description |
 |-------|-------------|
-| [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
+| [skill-create](skill-create/SKILL.md) | Create new agent skills from scratch — author SKILL.md, register in the repo, validate, and merge when CI is green. |
+| [skill-quality](skill-quality/SKILL.md) | Analyze agent skill quality, score against a rubric, suggest prioritized improvements, and optionally implement fixes. |
+| [skill-test](skill-test/SKILL.md) | Create and maintain automated tests for agent skills — structure, links, install, and rule conversion. |
+
+### Performance & Observability (6)
+
+| Skill | Description |
+|-------|-------------|
 | [compiled-performance](compiled-performance/SKILL.md) | Profile compiled/native applications, analyze CPU/memory/I/O bottlenecks, recommend optimizations, and optionally implement fixes with measured before/after gains. |
-| [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
 | [hardware-metrics](hardware-metrics/SKILL.md) | Measure CPU, RAM, GPU, disk I/O, and hardware temperatures under load; report saturation, thermal and storage headroom, and throttling with structured before/after snapshots. |
+| [interpreted-performance](interpreted-performance/SKILL.md) | Profile Python, Node.js, Ruby, PHP, and other interpreted runtimes; analyze CPU, memory, I/O, and GC bottlenecks; recommend optimizations; optionally implement fixes with measured gains. |
+| [opentelemetry](opentelemetry/SKILL.md) | Implement OpenTelemetry observability — traces, metrics, and logs with OTLP export, auto-instrumentation, resource attributes, and collector wiring. |
 | [valgrind-memcheck](valgrind-memcheck/SKILL.md) | Run Valgrind Memcheck on C/C++ binaries to detect memory leaks and heap errors, report findings in detail, and offer fixes. |
+| [web-performance](web-performance/SKILL.md) | Analyze web app performance across Core Web Vitals, bundles, network, and backend latency; recommend and optionally implement optimizations. |
 
 ### Security (3)
 
@@ -69,19 +79,29 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [mcp-security](mcp-security/SKILL.md) | Implement and harden MCP servers using NSA AISC security design considerations (CSI PP-26-1834). |
 | [prompt-security](prompt-security/SKILL.md) | Harden system prompts against leakage, injection, and override — non-disclosure, instruction hierarchy, and red-team review. |
 
-### MCP & Integrations (9)
+### MCP (3)
 
 | Skill | Description |
 |-------|-------------|
 | [add-mcp-server](add-mcp-server/SKILL.md) | Add a project-local MCP server so agents can interact with databases, APIs, and other project resources. |
 | [codebase-memory](codebase-memory/SKILL.md) | Explore codebases through a knowledge-graph MCP — search, trace, and fetch snippets instead of reading whole files. |
 | [headroom](headroom/SKILL.md) | Compress large tool outputs and file contents via Headroom MCP to cut context tokens while keeping reversible retrieval. |
+
+### Local LLM (2)
+
+| Skill | Description |
+|-------|-------------|
 | [llm-backend-select](llm-backend-select/SKILL.md) | Benchmark Ollama, llama.cpp, and vLLM on the user's system and pick the best backend for a chosen metric — tok/s, TTFT, KV cache, memory, or concurrency. |
 | [llmfit](llmfit/SKILL.md) | Pick the best local LLM for the user's hardware with llmfit — detect specs, score fit/speed/quality, and recommend runnable models. |
-| [slack-daily-plan](slack-daily-plan/SKILL.md) | Scan Slack mentions, DMs, and priority channels, then produce a ranked high-level plan for what to accomplish today. |
+
+### Productivity & Planning (4)
+
+| Skill | Description |
+|-------|-------------|
+| [daily-plan](daily-plan/SKILL.md) | Combine Slack, Gmail, and Jira signals into one ranked high-level plan for what to accomplish today. |
 | [gmail-daily-plan](gmail-daily-plan/SKILL.md) | Scrape or read Gmail inbox, unread, and important mail, then produce a ranked high-level plan for what to accomplish today. |
 | [jira-daily-plan](jira-daily-plan/SKILL.md) | Scrape or read Jira assigned issues, sprint boards, and blockers, then produce a ranked high-level plan for what to accomplish today. |
-| [daily-plan](daily-plan/SKILL.md) | Combine Slack, Gmail, and Jira signals into one ranked high-level plan for what to accomplish today. |
+| [slack-daily-plan](slack-daily-plan/SKILL.md) | Scan Slack mentions, DMs, and priority channels, then produce a ranked high-level plan for what to accomplish today. |
 
 ### Context & Efficiency (5)
 

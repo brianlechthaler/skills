@@ -27,5 +27,5 @@ def test_validate_skill_categories_detects_extra() -> None:
 
 
 def test_category_for_skill() -> None:
-    assert skill_categories.category_for_skill("docker") == "DevOps & CI"
+    assert skill_categories.category_for_skill("docker") == "Containers & Cloud"
     assert skill_categories.category_for_skill("missing") is None

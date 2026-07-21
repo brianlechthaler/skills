@@ -65,7 +65,7 @@ my-skill errors:
 ### Phase 7 checklist (implemented)
 
 1. Create `skill-quality/SKILL.md`, `rubric.md`, `examples.md`
-2. Add `skill-quality` to `skill_categories.py` under Testing & Quality
+2. Add `skill-quality` to `skill_categories.py` under Agent Skills
 3. Add README table row
 4. Run `pytest tests/test_skills.py` and `python scripts/sync_readme_skill_count.py`
 
