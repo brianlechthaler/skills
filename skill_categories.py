@@ -4,26 +4,30 @@ from __future__ import annotations
 
 SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
-        "DevOps & CI",
+        "Containers & Cloud",
         (
+            "cloud-init",
+            "compose-deploy",
             "docker",
             "docker-optimize",
-            "compose-deploy",
-            "cloud-init",
-            "github-workflows",
-            "ci-optimize",
+        ),
+    ),
+    (
+        "CI/CD",
+        (
             "ci-debug",
+            "ci-optimize",
             "dependabot-merge",
-            "opentelemetry",
+            "github-workflows",
         ),
     ),
     (
         "GitHub",
         (
-            "github-publish",
             "github-issues",
-            "github-release",
             "github-merge-all",
+            "github-publish",
+            "github-release",
         ),
     ),
     (
@@ -36,56 +40,72 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         ),
     ),
     (
-        "Testing & Quality",
+        "Testing",
         (
-            "test",
-            "skill-create",
-            "skill-test",
-            "lint",
             "browser-test",
+            "lint",
             "playwright-test",
-            "skill-quality",
+            "test",
         ),
     ),
     (
-        "Performance",
+        "Agent Skills",
         (
-            "web-performance",
+            "skill-create",
+            "skill-quality",
+            "skill-test",
+        ),
+    ),
+    (
+        "Performance & Observability",
+        (
             "compiled-performance",
-            "interpreted-performance",
             "hardware-metrics",
+            "interpreted-performance",
+            "opentelemetry",
             "valgrind-memcheck",
+            "web-performance",
         ),
     ),
     (
         "Security",
         (
-            "security-audit",
             "mcp-security",
             "prompt-security",
+            "security-audit",
         ),
     ),
     (
-        "MCP & Integrations",
+        "MCP",
         (
             "add-mcp-server",
             "codebase-memory",
             "headroom",
+        ),
+    ),
+    (
+        "Local LLM",
+        (
             "llm-backend-select",
             "llmfit",
-            "slack-daily-plan",
+        ),
+    ),
+    (
+        "Productivity & Planning",
+        (
+            "daily-plan",
             "gmail-daily-plan",
             "jira-daily-plan",
-            "daily-plan",
+            "slack-daily-plan",
         ),
     ),
     (
         "Context & Efficiency",
         (
             "caveman",
-            "terse",
             "prompt-conciseness",
             "simple-code",
+            "terse",
             "toonify",
         ),
     ),

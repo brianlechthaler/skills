@@ -58,7 +58,7 @@ Before writing files, decide:
 | **Skill name** | Lowercase, hyphens, matches `install.SKILL_NAME_RE` (e.g. `docker-optimize`, `skill-create`) |
 | **Purpose** | One focused workflow — split broad topics into separate skills |
 | **Triggers** | What the agent should match on; becomes the `description` frontmatter field (≥ 20 chars) |
-| **Category** | Pick one from `skill_categories.py` — DevOps, GitHub, Documentation, Testing & Quality, etc. |
+| **Category** | Pick one from `skill_categories.py` — Containers & Cloud, CI/CD, GitHub, Testing, Agent Skills, etc. |
 | **Overlap** | Check `python3 install.py --list` — extend an existing skill instead of duplicating |
 
 Write a one-line purpose statement and 3–5 trigger phrases before drafting content.

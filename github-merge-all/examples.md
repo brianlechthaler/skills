@@ -41,7 +41,7 @@ When two branches each add one skill to the same category tuple, keep **both** e
 ```python
 # Before (conflict markers removed):
 (
-    "DevOps & CI",
+    "Containers & Cloud",
     (
         "docker",
         "ci-debug",      # from PR A
