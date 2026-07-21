@@ -14,6 +14,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "ci-optimize",
             "ci-debug",
             "dependabot-merge",
+            "opentelemetry",
         ),
     ),
     (
