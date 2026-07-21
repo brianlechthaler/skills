@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:46 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **46** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:47 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **47** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (46)
+## Skills (47)
 
 ### DevOps & CI (9)
 
@@ -44,6 +44,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | Skill | Description |
 |-------|-------------|
 | [test](test/SKILL.md) | Enforce TDD and 100% test coverage on generated code before commits. |
+| [skill-create](skill-create/SKILL.md) | Create new agent skills from scratch — author SKILL.md, register in the repo, validate, and merge when CI is green. |
 | [skill-test](skill-test/SKILL.md) | Create and maintain automated tests for agent skills — structure, links, install, and rule conversion. |
 | [lint](lint/SKILL.md) | Enforce linting and formatting before commits. |
 | [browser-test](browser-test/SKILL.md) | Test web apps in the browser with real UI interaction and verification before marking UI work complete. |
