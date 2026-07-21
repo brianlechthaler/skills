@@ -81,6 +81,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
         "Context & Efficiency",
         (
+            "caveman",
             "terse",
             "prompt-conciseness",
             "simple-code",
