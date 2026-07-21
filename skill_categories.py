@@ -39,6 +39,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "Testing & Quality",
         (
             "test",
+            "skill-create",
             "skill-test",
             "lint",
             "browser-test",
