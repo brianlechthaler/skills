@@ -28,7 +28,7 @@ When unsure and the deliverable is a new `SKILL.md`, apply this skill.
 ## Core Rules
 
 1. **One skill per directory** — lowercase name with hyphens; `name` in frontmatter must match the folder exactly.
-2. **Register everywhere** — `SKILL.md`, exactly one entry in `skill_categories.py`, and a row in the matching `README.md` category table.
+2. **Register everywhere** — `SKILL.md`, exactly one entry in `skill_categories.py`, and a row in the matching [skills-catalog.md](../docs/features/skills-catalog.md) category table.
 3. **Validate before commit** — run skill tests and sync README count markers; do not push failing validation.
 4. **Feature branch + PR** — never commit new skills directly to the default branch.
 5. **Merge when CI is green** — when the user requests merge-on-green (or this skill is invoked with that intent), merge without asking once all required checks pass.
@@ -41,7 +41,7 @@ Copy and track progress:
 Skill create:
 - [ ] Phase 0: Scope — purpose, triggers, category, skill name
 - [ ] Phase 1: Author — `<skill>/SKILL.md` with frontmatter and body
-- [ ] Phase 2: Register — skill_categories.py + README.md table row
+- [ ] Phase 2: Register — skill_categories.py + skills-catalog.md table row
 - [ ] Phase 3: Validate — pytest, ruff, README count sync
 - [ ] Phase 4: Publish — branch, commit, push, open PR
 - [ ] Phase 5: Merge — wait for CI green, then merge
@@ -122,13 +122,13 @@ Strong peers to emulate: [orchestrate](../orchestrate/SKILL.md), [lint](../lint/
 ### Phase 2 — Register
 
 1. **`skill_categories.py`** — add the skill name to exactly **one** category tuple (alphabetical order within the tuple is conventional).
-2. **`README.md`** — add a table row in the matching category section:
+2. **`docs/features/skills-catalog.md`** — add a table row in the matching category section:
 
 ```markdown
-| [<skill-name>](<skill-name>/SKILL.md) | One-line summary of what the skill does. |
+| [<skill-name>](../../<skill-name>/SKILL.md) | One-line summary of what the skill does. |
 ```
 
-3. **Skill count** — run `python3 scripts/sync_readme_skill_count.py` to update `<!-- skill-count:N -->` markers and the `## Skills (N)` heading.
+3. **Skill count** — run `python3 scripts/sync_readme_skill_count.py` to update count markers in `README.md` and `skills-catalog.md`.
 
 ### Phase 3 — Validate
 
@@ -151,7 +151,7 @@ Fix every error from `skill_validate.validate_skill()` — common failures:
 | `body too short` / `missing top-level markdown heading` | Add `#` title and substantive sections |
 | `broken cross-skill link` | Fix `../skill/SKILL.md` path |
 | `skills missing from SKILL_CATEGORIES` | Add to exactly one category |
-| `README missing table link` | Add row to correct category table |
+| `skills-catalog.md missing table link` | Add row to correct category table |
 
 Optionally run [skill-quality](../skill-quality/SKILL.md) on the draft before opening the PR.
 
@@ -161,7 +161,7 @@ From the repo root on a feature branch (not the default branch):
 
 ```bash
 git checkout -b cursor/<descriptive-name>-<suffix>   # or feat/add-<skill>-skill
-git add <skill>/ skill_categories.py README.md
+git add <skill>/ skill_categories.py docs/features/skills-catalog.md
 git commit -m "Add <skill-name> skill"
 git push -u origin <branch-name>
 gh pr create --draft --title "Add <skill-name> skill" --body "..."
@@ -200,7 +200,7 @@ If the user did **not** request auto-merge, follow [github-publish](../github-pu
 Skill create gates:
 - [ ] `<skill>/SKILL.md` — valid frontmatter, heading, body length
 - [ ] skill_categories.py — exactly one category
-- [ ] README.md — category table row added
+- [ ] skills-catalog.md — category table row added
 - [ ] sync_readme_skill_count.py — count markers updated
 - [ ] pytest tests/test_skills.py passes
 - [ ] ruff check/format pass on changed files

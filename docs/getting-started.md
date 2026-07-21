@@ -90,16 +90,17 @@ See [Installer — Uninstall](features/installer.md#uninstall) for behavior deta
 
 ## Next steps
 
+- [Skills catalog](features/skills-catalog.md) — all skills by category
 - [USAGE.md](../USAGE.md) — skills vs rules, per-tool paths, manual install/remove
 - [Supported coding tools](features/supported-tools.md) — all 19 tools with paths and examples
 - [Skill testing](features/skill-testing.md) — how skills are validated in CI
-- [README.md](../README.md) — full skill catalog
+- [Skill authoring](features/skill-authoring.md) — add a new skill to this repo
 
 ## Authoring a skill
 
 1. Create `<skill>/SKILL.md` with YAML frontmatter (`name`, `description`).
 2. Add the skill to `skill_categories.py`.
-3. Add a row to the matching category table in `README.md`.
+3. Add a row to the matching category table in [skills-catalog.md](features/skills-catalog.md).
 4. Run `pytest tests/test_skills.py` to validate.
 
 See the [Agent Skills specification](https://agentskills.io/) for the portable format, your agent's docs (listed in [Supported coding tools](features/supported-tools.md)), and the [document-project](../document-project/SKILL.md) skill for documentation conventions.

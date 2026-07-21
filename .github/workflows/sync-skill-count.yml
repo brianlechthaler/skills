@@ -25,11 +25,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Update README skill count
+      - name: Update skill counts
         run: python scripts/sync_readme_skill_count.py
 
       - name: Commit and push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "docs: sync README skill count"
-          file_pattern: README.md
+          commit_message: "docs: sync skill counts"
+          file_pattern: README.md docs/features/skills-catalog.md

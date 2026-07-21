@@ -14,7 +14,7 @@ FENCED_CODE_RE = re.compile(r"```[\s\S]*?```")
 INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
 DOUBLE_INLINE_CODE_RE = re.compile(r"``[^`\n]+``")
 README_SKILL_LINK_RE = re.compile(
-    r"\[([a-z0-9][a-z0-9-]*)\]\(([a-z0-9][a-z0-9-]*)/SKILL\.md\)"
+    r"\[([a-z0-9][a-z0-9-]*)\]\((?:\.\./\.\./)?([a-z0-9][a-z0-9-]*)/SKILL\.md\)"
 )
 MIN_BODY_CHARS = 100
 MIN_DESCRIPTION_CHARS = 20
@@ -165,25 +165,26 @@ def readme_skill_links(readme_text: str) -> dict[str, str]:
     return links
 
 
-def validate_readme_skills(readme_path: Path, skills: list[str]) -> list[str]:
-    if not readme_path.is_file():
-        return [f"README not found: {readme_path}"]
+def validate_readme_skills(catalog_path: Path, skills: list[str]) -> list[str]:
+    label = catalog_path.name
+    if not catalog_path.is_file():
+        return [f"{label} not found: {catalog_path}"]
 
-    readme_text = readme_path.read_text(encoding="utf-8")
-    links = readme_skill_links(readme_text)
+    catalog_text = catalog_path.read_text(encoding="utf-8")
+    links = readme_skill_links(catalog_text)
     errors: list[str] = []
 
     for skill in skills:
         if skill not in links:
-            errors.append(f"README missing table link for skill {skill!r}")
+            errors.append(f"{label} missing table link for skill {skill!r}")
         elif links[skill] != skill:
             target = links[skill]
             errors.append(
-                f"README link target for {skill!r} is {target!r}, expected {skill!r}"
+                f"{label} link target for {skill!r} is {target!r}, expected {skill!r}"
             )
 
     extra = sorted(set(links) - set(skills))
     if extra:
-        errors.append(f"README lists unknown skills: {', '.join(extra)}")
+        errors.append(f"{label} lists unknown skills: {', '.join(extra)}")
 
     return errors
