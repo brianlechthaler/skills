@@ -66,8 +66,9 @@ def test_skill_rule_install_cursor(skill: str, tmp_path: Path) -> None:
     assert "# " in text
 
 
-def test_readme_lists_every_skill() -> None:
-    errors = skill_validate.validate_readme_skills(ROOT / "README.md", ALL_SKILLS)
+def test_catalog_lists_every_skill() -> None:
+    catalog = ROOT / "docs" / "features" / "skills-catalog.md"
+    errors = skill_validate.validate_readme_skills(catalog, ALL_SKILLS)
     assert not errors, "\n".join(errors)
 
 
@@ -116,8 +117,9 @@ def test_readme_skill_links_parses_table() -> None:
 
 
 def test_validate_readme_skills_detects_missing() -> None:
+    catalog = ROOT / "docs" / "features" / "skills-catalog.md"
     errors = skill_validate.validate_readme_skills(
-        ROOT / "README.md",
+        catalog,
         ["docker", "nonexistent-skill"],
     )
     assert any("missing table link" in err for err in errors)

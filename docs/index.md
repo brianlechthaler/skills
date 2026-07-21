@@ -11,13 +11,16 @@ Skills in this repo follow the [Agent Skills open standard](https://agentskills.
 | Doc | Description |
 |-----|-------------|
 | [Getting started](getting-started.md) | Install, verify, and uninstall skills |
-| [README.md](../README.md) | Skill catalog and quick install commands |
+| [Skills catalog](features/skills-catalog.md) | All skills by category |
+| [README.md](../README.md) | Quick start and documentation links |
 | [USAGE.md](../USAGE.md) | Per-tool guide: skills vs rules, paths, tips |
 
 ## Features
 
 | Doc | Description |
 |-----|-------------|
+| [Skills catalog](features/skills-catalog.md) | All 47 skills by category with links to each SKILL.md |
+| [Skill authoring](features/skill-authoring.md) | Add a new skill to this repository |
 | [Installer](features/installer.md) | `install.py` install/uninstall, flags, flows, troubleshooting |
 | [Supported coding tools](features/supported-tools.md) | 19 tools, agent IDs, paths, auto-detection, rule formats |
 | [Skill testing](features/skill-testing.md) | Automated validation in CI and local test commands |

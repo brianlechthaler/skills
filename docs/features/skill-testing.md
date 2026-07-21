@@ -19,7 +19,7 @@ Each skill (`<skill>/SKILL.md`) is exercised individually with parametrized pyte
 | **Rule conversion** | `install.convert_skill_to_rule()` succeeds for Cursor, Claude, Windsurf, and plain formats |
 | **Skill install** | `install.install_skill_for_agent(..., method="copy")` copies the skill into `.cursor/skills/<skill>/` |
 | **Rule install** | `install.install_skill_as_rule_for_agent(..., "cursor")` writes `.cursor/rules/<skill>.mdc` |
-| **README index** | `README.md` table links each skill as `[name](name/SKILL.md)` with no extras or omissions |
+| **Skills catalog index** | `docs/features/skills-catalog.md` table links each skill as `[name](../../name/SKILL.md)` with no extras or omissions |
 
 Validation logic lives in `skill_validate.py`. Link checking ignores content inside fenced code blocks and inline backticks so template examples (e.g. README skeletons in `document-project`) do not require files that only exist in target projects.
 
@@ -37,9 +37,9 @@ python scripts/sync_readme_skill_count.py --check
 
 1. Create `<skill>/SKILL.md` with valid frontmatter (`name` must match the directory).
 2. Add the skill to `skill_categories.py` in exactly one category.
-3. Add a table row to `README.md`.
+3. Add a table row to `docs/features/skills-catalog.md`.
 4. Run `pytest tests/test_skills.py` — the new skill is picked up automatically via `discover_skills()`.
-5. Run `python scripts/sync_readme_skill_count.py` to update skill-count markers.
+5. Run `python scripts/sync_readme_skill_count.py` to update skill-count markers in README and the catalog.
 
 ## Fixes applied during test rollout
 

@@ -8,14 +8,14 @@ Each skill is a standard `<skill>/SKILL.md` directory. The installer maps that s
 
 ```
 skills/
-├── README.md                 # Skill catalog (links to each SKILL.md)
+├── README.md                 # Short entry point (links to docs/)
 ├── USAGE.md                  # Per-tool usage guide
 ├── install.py                # Cross-platform installer / uninstaller
 ├── skill_categories.py       # Category groupings for --list-by-category
 ├── skill_validate.py         # Frontmatter, links, and body checks
 ├── <skill>/                  # One directory per skill
 │   └── SKILL.md              # Required: frontmatter + instructions
-├── docs/                     # Project documentation
+├── docs/                     # Project documentation (catalog, guides, architecture)
 ├── scripts/                  # Maintenance helpers (README skill count sync)
 └── tests/                    # pytest suite (install + per-skill validation)
 ```
@@ -59,7 +59,7 @@ CI runs on every change to skills, tests, or validation code:
 2. `skill_validate.py` checks frontmatter, body length, and internal links
 3. `tests/test_skills.py` exercises install and rule conversion per skill
 4. `tests/test_install.py` covers installer edge cases including uninstall
-5. `scripts/sync_readme_skill_count.py` keeps README skill counts in sync
+5. `scripts/sync_readme_skill_count.py` keeps README and skills-catalog counts in sync
 
 See [Skill testing](features/skill-testing.md) for details.
 

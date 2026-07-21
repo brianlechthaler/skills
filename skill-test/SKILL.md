@@ -39,7 +39,7 @@ New skills are picked up via `install.discover_skills()` — no manual test regi
 | Rule conversion (Cursor, Claude, Windsurf, plain) | `skill_validate.validate_rule_conversion()` |
 | Skill install (copy method) | `test_skill_install_copy` |
 | Rule install (Cursor `.mdc`) | `test_skill_rule_install_cursor` |
-| README index table | `skill_validate.validate_readme_skills()` |
+| Skills catalog index | `skill_validate.validate_readme_skills()` on `docs/features/skills-catalog.md` |
 
 Full reference: [docs/features/skill-testing.md](../docs/features/skill-testing.md).
 
@@ -51,7 +51,7 @@ Run steps **in order**. Do not skip validation before commit.
 Skill test progress:
 - [ ] `<skill>/SKILL.md` created with valid frontmatter (`name` matches directory)
 - [ ] Skill added to `skill_categories.py` in exactly one category
-- [ ] README.md category table row added (`[skill](skill/SKILL.md)`)
+- [ ] skills-catalog.md category table row added (`[skill](../../skill/SKILL.md)`)
 - [ ] `pytest tests/test_skills.py -v` passes (new skill auto-discovered)
 - [ ] `python scripts/sync_readme_skill_count.py` run to update count markers
 - [ ] `ruff check` and `ruff format --check` pass on changed Python files
@@ -107,7 +107,7 @@ When CI or local pytest reports a skill failure:
 | `body too short` / `missing top-level markdown heading` | Add `#` heading and substantive content |
 | `broken cross-skill link` | Fix `../skill/SKILL.md` path or remove link |
 | `broken local link` | Add the missing file or wrap example in backticks |
-| `README missing table link` | Add row to the correct category table in `README.md` |
+| `skills-catalog.md missing table link` | Add row to the correct category table in `docs/features/skills-catalog.md` |
 | `skills missing from SKILL_CATEGORIES` | Add skill to exactly one tuple in `skill_categories.py` |
 
 3. Re-run `pytest tests/test_skills.py -v` until green.
@@ -143,7 +143,7 @@ Copy and complete before committing skill or test harness changes:
 Skill test gates:
 - [ ] `pytest tests/test_skills.py` passes
 - [ ] New skill in `skill_categories.py` (exactly one category)
-- [ ] README table row added; skill count synced
+- [ ] skills-catalog.md table row added; skill count synced
 - [ ] No broken markdown links in SKILL.md (outside code literals)
 - [ ] ruff check/format pass on changed Python files
 ```
@@ -155,7 +155,7 @@ Do not commit skill changes with failing `test_skills.py` or README validation e
 | Avoid | Do instead |
 |-------|------------|
 | Hard-code skill names in tests when parametrization works | Use `ALL_SKILLS` and `discover_skills()` |
-| Skip README or category updates | Both are enforced by tests |
+| Skip skills-catalog or category updates | Both are enforced by tests |
 | Put example links in prose without backticks | Wrap in `` ` `` or fenced blocks |
 | Loosen validation to make one skill pass | Fix the skill content or add a targeted unit test |
 | Assume local pass without running pytest | Always run `pytest tests/test_skills.py` |
