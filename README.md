@@ -1,13 +1,13 @@
 # skills
 
-<!-- skill-count:44 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **44** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:45 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **45** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (44)
+## Skills (45)
 
-### DevOps & CI (8)
+### DevOps & CI (9)
 
 | Skill | Description |
 |-------|-------------|
@@ -19,6 +19,7 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [ci-optimize](ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [ci-debug](ci-debug/SKILL.md) | Debug GitHub Actions failures — fetch logs, classify errors, reproduce locally, and optionally fix the underlying issue. |
 | [dependabot-merge](dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
+| [opentelemetry](opentelemetry/SKILL.md) | Implement OpenTelemetry observability — traces, metrics, and logs with OTLP export, auto-instrumentation, resource attributes, and collector wiring. |
 
 ### GitHub (4)
 
