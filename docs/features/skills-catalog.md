@@ -1,12 +1,12 @@
 # Skills catalog
 
-<!-- skill-count:47 -->
+<!-- skill-count:48 -->
 
-All **47** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
+All **48** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
 
 Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 
-## Skills (47)
+## Skills (48)
 
 ### Containers & Cloud (4)
 
@@ -26,7 +26,7 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | [dependabot-merge](../../dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 | [github-workflows](../../github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 
-### GitHub (4)
+### GitHub (5)
 
 | Skill | Description |
 |-------|-------------|
@@ -34,6 +34,7 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | [github-issues](../../github-issues/SKILL.md) | Triage open GitHub issues, implement one fix per issue with its own draft PR, comment on progress, and close issues when work is complete. |
 | [github-release](../../github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 | [github-merge-all](../../github-merge-all/SKILL.md) | Merge every open pull request: sync with the default branch, resolve conflicts, pass CI, and land PRs one at a time. |
+| [github-prune-branches](../../github-prune-branches/SKILL.md) | Safely prune old local and remote branches that are fully merged or whose PRs are closed/merged, with dry-run and protected refs. |
 
 ### Documentation (4)
 

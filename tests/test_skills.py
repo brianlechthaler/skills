@@ -20,7 +20,7 @@ def known_skills() -> frozenset[str]:
 
 
 def test_every_repo_skill_is_discovered() -> None:
-    assert len(ALL_SKILLS) == 47
+    assert len(ALL_SKILLS) == 48
     skill_categories.validate_skill_categories(ALL_SKILLS)
 
 
