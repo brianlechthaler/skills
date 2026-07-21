@@ -1,11 +1,11 @@
 # skills
 
-<!-- skill-count:45 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **45** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:46 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **46** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
-## Skills (45)
+## Skills (46)
 
 ### DevOps & CI (9)
 
@@ -82,10 +82,11 @@ These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` di
 | [jira-daily-plan](jira-daily-plan/SKILL.md) | Scrape or read Jira assigned issues, sprint boards, and blockers, then produce a ranked high-level plan for what to accomplish today. |
 | [daily-plan](daily-plan/SKILL.md) | Combine Slack, Gmail, and Jira signals into one ranked high-level plan for what to accomplish today. |
 
-### Context & Efficiency (4)
+### Context & Efficiency (5)
 
 | Skill | Description |
 |-------|-------------|
+| [caveman](caveman/SKILL.md) | Cut agent output tokens ~65% with ultra-compressed caveman prose while keeping code, commands, and errors exact. |
 | [terse](terse/SKILL.md) | Minimize tokens in user-facing prose — fewest words needed for status, results, and next steps. |
 | [prompt-conciseness](prompt-conciseness/SKILL.md) | Shorten system prompts and agent instructions to save tokens while preserving every critical policy and capability. |
 | [simple-code](simple-code/SKILL.md) | Write the simplest possible code with the fewest lines — no redundant logic, abstractions, or helpers. |
