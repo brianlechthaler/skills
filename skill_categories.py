@@ -114,6 +114,12 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "Orchestration",
         ("orchestrate",),
     ),
+    (
+        "Coding Agents",
+        (
+            "opencode-setup",
+        ),
+    ),
 )
 
 

@@ -1,7 +1,7 @@
 # skills
 
-<!-- skill-count:48 -->
-Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **48** reusable instruction bundles that teach agents specialized workflows.
+<!-- skill-count:49 -->
+Portable [Agent Skills](https://agentskills.io/) for **any AI coding agent** — **49** reusable instruction bundles that teach agents specialized workflows.
 
 These skills are **not Cursor-specific**. Each skill is a standard `SKILL.md` directory that works with Cursor, Claude Code, OpenCode, Codex, Windsurf, GitHub Copilot, and **14 other tools** supported by the installer. Install to one agent or many with a single command.
 
@@ -26,7 +26,7 @@ python3 install.py --all -y
 
 ## Documentation
 
-- [Skills catalog](docs/features/skills-catalog.md) — all 47 skills by category
+- [Skills catalog](docs/features/skills-catalog.md) — all 49 skills by category
 - [Getting started](docs/getting-started.md) — install, verify, uninstall
 - [Installer](docs/features/installer.md) — `install.py` flags, flows, troubleshooting
 - [Supported coding tools](docs/features/supported-tools.md) — 19 agents, paths, rule formats

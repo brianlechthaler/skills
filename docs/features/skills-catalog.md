@@ -1,12 +1,12 @@
 # Skills catalog
 
-<!-- skill-count:48 -->
+<!-- skill-count:49 -->
 
-All **48** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
+All **49** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
 
 Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 
-## Skills (48)
+## Skills (49)
 
 ### Containers & Cloud (4)
 
@@ -120,6 +120,12 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | Skill | Description |
 |-------|-------------|
 | [orchestrate](../../orchestrate/SKILL.md) | Plan comprehensively and run subagents in parallel by phase, respecting dependencies and avoiding race conditions. |
+
+### Coding Agents (1)
+
+| Skill | Description |
+|-------|-------------|
+| [opencode-setup](../../opencode-setup/SKILL.md) | Configure OpenCode with a specified provider and model, writing opencode.json and .env.example with a placeholder API key the user must fill in. |
 
 ## Related
 
