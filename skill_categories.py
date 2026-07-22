@@ -114,6 +114,10 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "Orchestration",
         ("orchestrate",),
     ),
+    (
+        "Codebase Understanding",
+        ("explain-codebase",),
+    ),
 )
 
 

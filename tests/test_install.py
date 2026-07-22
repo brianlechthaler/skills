@@ -405,7 +405,12 @@ def test_detect_agents(tmp_path: Path) -> None:
 
     empty_home = tmp_path / "empty"
     empty_home.mkdir()
-    assert install.detect_agents(empty_home) == ["cursor", "claude-code", "opencode"]
+    with mock.patch("install.command_on_path", return_value=False):
+        assert install.detect_agents(empty_home) == [
+            "cursor",
+            "claude-code",
+            "opencode",
+        ]
 
 
 def test_detect_agents_via_command(tmp_path: Path) -> None:
