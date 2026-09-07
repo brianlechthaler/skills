@@ -25,6 +25,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "GitHub",
         (
             "github-issues",
+            "github-login",
             "github-merge-all",
             "github-prune-branches",
             "github-publish",

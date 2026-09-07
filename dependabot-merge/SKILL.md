@@ -24,13 +24,12 @@ Process every open Dependabot PR for the current repository: assess safety, fix 
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git remote -v
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 ```
-
-If `gh` is not authenticated, run `gh auth login` and stop until the user completes it.
 
 ## Workflow Checklist
 

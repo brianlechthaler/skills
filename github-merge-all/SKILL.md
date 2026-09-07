@@ -23,13 +23,12 @@ Process every open PR in the current repository: sync with the default branch, r
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git remote -v
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 ```
-
-If `gh` is not authenticated, run `gh auth login` and stop until the user completes it.
 
 ## Workflow Checklist
 
@@ -221,6 +220,7 @@ Return a structured summary:
 
 | Situation | Skill |
 |-----------|-------|
+| GitHub CLI auth | [github-login](../github-login/SKILL.md) — check login; ask only if not logged in |
 | Dependabot-only backlog | [dependabot-merge](../dependabot-merge/SKILL.md) — safer dep-specific checks |
 | CI failures during merge | [ci-debug](../ci-debug/SKILL.md) — when present in the repo |
 | Code fixes on a PR branch | [test](../test/SKILL.md), [lint](../lint/SKILL.md) |

@@ -15,14 +15,15 @@ description: >-
 2. **Use SemVer** — tags are `vMAJOR.MINOR.PATCH` (e.g. `v1.4.2`). Pre-releases use `-alpha.N`, `-beta.N`, or `-rc.N` suffixes.
 3. **Ship a real changelog** — group changes by impact (Added, Changed, Fixed, Breaking, Security). Do not paste raw `git log --oneline` as the release body.
 4. **Include deploy instructions** — every release notes body ends with a **Deploy** section tailored to how this project is actually run (Docker, package manager, installer script, static assets, etc.).
-5. **Use `gh`** for releases, tags, and repo metadata. Verify auth before starting.
+5. **Use `gh`** for releases, tags, and repo metadata. Follow [github-login](../github-login/SKILL.md) before starting.
 
 These rules apply unless the user opts out (e.g. "draft only", "don't push tag", specific version override).
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git fetch origin
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 ```
@@ -251,7 +252,7 @@ Request `git_write` and network permissions when the environment requires them.
 
 ```
 Release workflow:
-- [ ] gh authenticated; origin/default branch identified
+- [ ] github-login completed; origin/default branch identified
 - [ ] Release target is origin/$DEFAULT at intended SHA
 - [ ] Pre-flight checks pass (CI, tests, no duplicate tag)
 - [ ] Next SemVer computed from Conventional Commits (user confirmed if ambiguous)
@@ -292,3 +293,4 @@ Release workflow:
 ## Additional Resources
 
 - Copy-paste command sequences: [examples.md](examples.md)
+- GitHub CLI auth: [github-login](../github-login/SKILL.md)

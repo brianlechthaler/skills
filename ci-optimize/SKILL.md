@@ -19,8 +19,9 @@ Speed is the primary objective. Preserve required test coverage and security che
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git fetch origin
 ```
 
@@ -232,6 +233,7 @@ When GitHub Actions UI shows queue time vs run time, note both — queue fixes (
 
 | Skill | Role |
 |-------|------|
+| [github-login](../github-login/SKILL.md) | Check `gh` login; ask to authenticate only when not logged in |
 | [github-workflows](../github-workflows/SKILL.md) | Correct baseline layout (test, lint, container); extend, don't replace |
 | [github-publish](../github-publish/SKILL.md) | Branch, PR, CI watch, merge after user approval |
 | [docker](../docker/SKILL.md) | Container-first test runs; mirror cache strategy in CI |

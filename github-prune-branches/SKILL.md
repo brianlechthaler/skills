@@ -37,14 +37,13 @@ This skill only **deletes** branches after safety checks.
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git fetch origin --prune
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 CURRENT=$(git branch --show-current)
 ```
-
-If `gh` is not authenticated, run `gh auth login` and stop until the user completes it.
 
 ## Protected Branches
 
@@ -228,6 +227,7 @@ git remote prune origin
 
 | Situation | Skill |
 |-----------|-------|
+| GitHub CLI auth | [github-login](../github-login/SKILL.md) |
 | Open PRs still need landing before prune | [github-merge-all](../github-merge-all/SKILL.md) |
 | Finish work and delete branch via merge | [github-publish](../github-publish/SKILL.md) (`gh pr merge --delete-branch`) |
 | CI stuck on a stale branch tip | [ci-debug](../ci-debug/SKILL.md) |
