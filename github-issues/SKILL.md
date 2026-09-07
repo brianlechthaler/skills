@@ -26,14 +26,13 @@ Work through every open issue in the current repository: triage, implement, publ
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git remote -v
 REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 ```
-
-If `gh` is not authenticated, run `gh auth login` and stop until the user completes it.
 
 ## Workflow Checklist
 
@@ -298,6 +297,7 @@ Return a structured summary:
 
 | Skill | When |
 |-------|------|
+| [github-login](../github-login/SKILL.md) | Before any `gh` command — check login; ask to authenticate only when not logged in |
 | [github-publish](../github-publish/SKILL.md) | Every issue PR — branches, draft PRs, checklist, CI, merge approval |
 | [babysit](~/.cursor/skills-cursor/babysit/SKILL.md) | PR has review comments or repeated CI failures before merge |
 | [orchestrate](../orchestrate/SKILL.md) | Single issue is large enough to parallelize explore/implement phases |

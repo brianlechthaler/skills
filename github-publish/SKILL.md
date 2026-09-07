@@ -23,13 +23,7 @@ These rules apply to every task unless the user explicitly opts out (e.g. "don't
 
 ## Prerequisites
 
-Verify `gh` is available and authenticated before creating remotes or PRs:
-
-```bash
-gh auth status
-```
-
-If not authenticated, run `gh auth login` and ask the user to complete the flow. Do not skip publishing because auth is missing — surface the blocker and retry after login.
+Follow [github-login](../github-login/SKILL.md) before creating remotes or PRs. Do not skip publishing because auth is missing — surface the blocker and retry after login.
 
 ## Repository Setup
 
@@ -385,3 +379,4 @@ Publish workflow:
 ## Additional Resources
 
 - Copy-paste command sequences: [examples.md](examples.md)
+- GitHub CLI auth: [github-login](../github-login/SKILL.md)

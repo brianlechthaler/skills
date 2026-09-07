@@ -39,13 +39,12 @@ If AskQuestion is unavailable, ask conversationally with the same options.
 
 ## Prerequisites
 
+Follow [github-login](../github-login/SKILL.md) before any `gh` command.
+
 ```bash
-gh auth status
 git fetch origin
 DEFAULT=$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)
 ```
-
-If `gh` is not authenticated, run `gh auth login` and stop until the user completes it.
 
 Identify context:
 
@@ -278,6 +277,7 @@ Deliver a structured summary:
 
 | Skill | Role |
 |-------|------|
+| [github-login](../github-login/SKILL.md) | Check `gh` login; ask to authenticate only when not logged in |
 | [github-publish](../github-publish/SKILL.md) | Branch, PR, push, watch checks, merge approval |
 | [github-workflows](../github-workflows/SKILL.md) | Correct workflow layout when CI structure is wrong |
 | [ci-optimize](../ci-optimize/SKILL.md) | Speed improvements after CI is green |

@@ -1,12 +1,12 @@
 # Skills catalog
 
-<!-- skill-count:49 -->
+<!-- skill-count:50 -->
 
-All **49** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
+All **50** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
 
 Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 
-## Skills (49)
+## Skills (50)
 
 ### Containers & Cloud (4)
 
@@ -26,15 +26,16 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | [dependabot-merge](../../dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 | [github-workflows](../../github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
 
-### GitHub (5)
+### GitHub (6)
 
 | Skill | Description |
 |-------|-------------|
-| [github-publish](../../github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
 | [github-issues](../../github-issues/SKILL.md) | Triage open GitHub issues, implement one fix per issue with its own draft PR, comment on progress, and close issues when work is complete. |
-| [github-release](../../github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
+| [github-login](../../github-login/SKILL.md) | Check whether `gh` is already logged in; ask the user to authenticate to GitHub only when they are not. |
 | [github-merge-all](../../github-merge-all/SKILL.md) | Merge every open pull request: sync with the default branch, resolve conflicts, pass CI, and land PRs one at a time. |
 | [github-prune-branches](../../github-prune-branches/SKILL.md) | Safely prune old local and remote branches that are fully merged or whose PRs are closed/merged, with dry-run and protected refs. |
+| [github-publish](../../github-publish/SKILL.md) | Track changes in git, publish to public GitHub repos with `gh`, and open draft PRs with completed checklist items when work is done. |
+| [github-release](../../github-release/SKILL.md) | Create GitHub releases from the default branch with SemVer tags, Keep a Changelog-style notes, and project-specific deploy instructions. |
 
 ### Documentation (4)
 
