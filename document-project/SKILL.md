@@ -19,6 +19,7 @@ When applicable to the work at hand:
 - Avoid sounding like AI e.g. purple prose, excessive use of em dashes
 - Be concise while also including important information
 - Be utilitiarian and don't use a bunch of marketing-speak
+- Do not mention a license in the README unless a license already exists in the repository
 
 These are hard gates for documentation work. Do not mark documentation complete until every shipped or changed feature has a doc entry and the README points to it.
 
@@ -145,11 +146,9 @@ Minimal commands to install and run. Link to [Getting started](docs/getting-star
 ## Requirements
 
 Runtime versions, env vars, or services (brief).
-
-## License
-
-Link or name only if applicable.
 ```
+
+Include a **License** section only when the repository already has a license file (`LICENSE`, `LICENSE.md`, `COPYING`, or similar). Name it and link to that file. Do not invent a license, add a license file, or keep a License heading if none exists. If an existing README mentions a license and the repo has no license file, remove that mention.
 
 ## Feature Doc Template
 
@@ -199,6 +198,7 @@ Documentation gates:
 - [ ] Screenshots added or placeholder noted where UI/visual steps matter
 - [ ] No AI-sounding or marketing copy; concise and factual
 - [ ] Links work (relative paths, no broken anchors)
+- [ ] README mentions a license only if a license file already exists in the repo
 ```
 
 If the user asks to ship a feature and any box is unchecked, finish documentation first unless they explicitly opt out.
@@ -214,6 +214,7 @@ If the user asks to ship a feature and any box is unchecked, finish documentatio
 | Em dashes, superlatives, emoji decoration | Plain punctuation and facts |
 | Duplicating content across files | Single source in docs/; README links |
 | "Documentation TODO" left indefinitely | Write the doc or note explicit user deferral |
+| License section with no license file in the repo | Omit License from README unless a license already exists |
 
 ## Additional Resources
 
