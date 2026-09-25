@@ -1,12 +1,12 @@
 # Skills catalog
 
-<!-- skill-count:50 -->
+<!-- skill-count:51 -->
 
-All **50** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
+All **51** portable [Agent Skills](https://agentskills.io/) in this repository, grouped by category. Each skill is a `<skill>/SKILL.md` directory. Install with [install.py](installer.md) or open any skill link below for full instructions.
 
 Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 
-## Skills (50)
+## Skills (51)
 
 ### Containers & Cloud (4)
 
@@ -17,7 +17,7 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | [docker](../../docker/SKILL.md) | Run all builds, tests, and tooling inside Docker containers. Nothing installed on the host except Docker. Credentials and SSH keys are mounted read-only from the host. |
 | [docker-optimize](../../docker-optimize/SKILL.md) | Reduce Docker image size: baseline layers and bytes, apply multi-stage builds, smaller bases, .dockerignore, and dependency pruning until gains plateau. |
 
-### CI/CD (4)
+### CI/CD (5)
 
 | Skill | Description |
 |-------|-------------|
@@ -25,6 +25,7 @@ Run `python3 install.py --list-by-category` for the same grouping from the CLI.
 | [ci-optimize](../../ci-optimize/SKILL.md) | Aggressively optimize CI for fastest completion: baseline, iterate on caching, parallelization, and path filters until gains plateau. |
 | [dependabot-merge](../../dependabot-merge/SKILL.md) | Find open Dependabot PRs, verify updates are safe, fix code for new dependency versions, and merge when tests and CI pass. |
 | [github-workflows](../../github-workflows/SKILL.md) | Create GitHub Actions workflows for unit tests, linters, and container builds with GHCR publish. |
+| [remote-rust-build](../../remote-rust-build/SKILL.md) | Run `cargo build` on a remote machine over SSH, suggesting concrete hosts from the user's SSH config when no builder is specified. |
 
 ### GitHub (6)
 
