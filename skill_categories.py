@@ -19,6 +19,7 @@ SKILL_CATEGORIES: tuple[tuple[str, tuple[str, ...]], ...] = (
             "ci-optimize",
             "dependabot-merge",
             "github-workflows",
+            "remote-rust-build",
         ),
     ),
     (
