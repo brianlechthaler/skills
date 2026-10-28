@@ -20,15 +20,18 @@ Verify: `perf --version`, `hyperfine --version`, `go version`, `cargo --version`
 When `sudo` or package install is unavailable:
 
 ```bash
-docker run --rm -v "$(pwd):/work" -w /work --cap-add SYS_PTRACE \
+docker run --rm -v "$(pwd):/work" -w /work \
   ubuntu:24.04 bash -c '
-  apt-get update -qq && apt-get install -y -qq build-essential linux-tools-generic hyperfine
+  apt-get update -qq && apt-get install -y -qq build-essential hyperfine
   make CFLAGS="-g -O2" myprog
   hyperfine --warmup 2 "./myprog --input data/sample.dat"
 '
 ```
 
-For `perf record`, the container may need `--privileged` or `kernel.perf_event_paranoid` adjusted on the host.
+For `perf record` inside a container, the host usually must allow perf events
+(`kernel.perf_event_paranoid`) and the container needs ptrace-capable settings.
+Prefer adjusting the host sysctl and using the least capability set that works;
+avoid granting full host-equivalent container privileges.
 
 ## C / C++ — CMake
 

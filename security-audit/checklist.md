@@ -4,7 +4,7 @@ Reference for [SKILL.md](SKILL.md). Work through every applicable item — mark 
 
 ## Phase 1 — Secrets and Credentials
 
-- [ ] Committed `.env`, `.pem`, `.key`, `credentials.json`, `id_rsa`, kubeconfig
+- [ ] Committed secret material (env files, private keys, cloud auth configs)
 - [ ] Hardcoded API keys, tokens, passwords, connection strings in source
 - [ ] Secrets in test fixtures, examples, or docs that mirror production patterns
 - [ ] Secrets in Dockerfiles, compose files, Helm values, Terraform `*.tfvars`
@@ -108,7 +108,7 @@ Reference for [SKILL.md](SKILL.md). Work through every applicable item — mark 
 
 - [ ] Running as root in container
 - [ ] Secrets baked into image layers
-- [ ] `--privileged`, excessive capabilities, host namespace sharing
+- [ ] Full-privilege container mode, excessive capabilities, or host namespace sharing
 - [ ] Published ports exposing internal services unnecessarily
 - [ ] Missing resource limits (DoS via memory/CPU exhaustion)
 
@@ -116,7 +116,7 @@ Reference for [SKILL.md](SKILL.md). Work through every applicable item — mark 
 
 - [ ] Overly broad RBAC (`cluster-admin` for apps)
 - [ ] Secrets in plain ConfigMaps
-- [ ] `hostPath` mounts, `hostNetwork: true` without justification
+- [ ] Host filesystem mounts or host network namespace without justification
 - [ ] Missing network policies
 
 ### Terraform / Cloud IaC

@@ -5,7 +5,7 @@
 **Situation:** Developer on a laptop with unknown GPU; wants a coding assistant via Ollama.
 
 ```
-1. command -v llmfit || curl -fsSL https://llmfit.axjns.dev/install.sh | sh -s -- --local
+1. command -v llmfit || brew install AlexsJones/llmfit/llmfit || uv tool install -U llmfit
 2. llmfit system --json
 3. llmfit recommend --json --use-case coding --limit 5
 4. llmfit info "<top pick name>"

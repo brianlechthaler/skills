@@ -34,10 +34,7 @@ Confirm the CLI is available before recommending models.
 # macOS / Linux — prebuilt binary (recommended)
 brew install AlexsJones/llmfit/llmfit
 
-# macOS / Linux — no sudo (~/.local/bin)
-curl -fsSL https://llmfit.axjns.dev/install.sh | sh -s -- --local
-
-# Python / uv
+# Python / uv (no host shell installer)
 uv tool install -U llmfit
 
 # Run without installing
@@ -46,9 +43,11 @@ uvx llmfit --help
 # Windows
 scoop install llmfit
 
-# Docker (JSON output, no host install)
-docker run ghcr.io/alexsjones/llmfit recommend --json
+# Docker (JSON output, no host install; pin the image tag you trust)
+docker run --rm ghcr.io/alexsjones/llmfit:latest recommend --json
 ```
+
+Prefer package managers (`brew`, `uv`, `scoop`) over remote shell installers.
 
 Verify:
 

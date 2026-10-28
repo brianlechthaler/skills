@@ -2,7 +2,9 @@
 """Scan every skill directory with NVIDIA SkillSpector (static / --no-llm).
 
 Discovers immediate child directories that contain SKILL.md (the layout used by
-this repository), scans each one individually, and writes:
+this repository), scans each one individually with --use-shipped-baseline
+(honors a reviewed .skillspector-baseline.yaml in the skill directory), and
+writes:
 
   - per-skill JSON and SARIF under --output-dir
   - a merged skillspector.sarif
@@ -207,6 +209,7 @@ def scan_skill(
         "scan",
         str(skill_dir),
         "--no-llm",
+        "--use-shipped-baseline",
         "--format",
         "json",
         "--output",
