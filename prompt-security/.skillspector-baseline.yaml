@@ -1,0 +1,23 @@
+# Reviewed SkillSpector suppressions for prompt-security.
+# Applied in CI via scripts/run_skillspector.py --use-shipped-baseline.
+#
+# This skill teaches agents to recognize and refuse prompt-injection /
+# exfiltration attacks. Attack strings appear only as examples, checklists,
+# and expected-refusal test cases — not as instructions to follow.
+version: 2
+scanner_version: "2.13.1"
+rules:
+  - id: "P*"
+    reason: >-
+      Educational prompt-injection attack and defense examples; intentional
+      teaching content and refusal test cases, not executable agent directives.
+  - id: "YR4"
+    reason: >-
+      YARA matches attack strings cited as refusal test cases in this security
+      skill.
+  - id: "AR3"
+    reason: >-
+      Anti-refusal phrases appear only as checklist items to defend against.
+  - id: "MP1"
+    reason: >-
+      Documents persistent-injection risks to detect and prevent, not to perform.

@@ -13,6 +13,7 @@ This repo is a **Python Agent Skills library + cross-platform installer** (`inst
 - Lint: `python3 -m ruff check install.py skill_categories.py skill_validate.py scripts/ tests/`
 - Format check: `python3 -m ruff format --check install.py skill_categories.py skill_validate.py scripts/ tests/`
 - README skill count sync: `python3 scripts/sync_readme_skill_count.py --check`
+- SkillSpector (after `pip install 'git+https://github.com/NVIDIA/SkillSpector.git@v2.13.1'`): `python3 scripts/run_skillspector.py --root . --output-dir /tmp/skillspector-results` (CI: `.github/workflows/skillspector.yml`)
 
 ### Installer CLI (the product; see `README.md` / `USAGE.md`)
 - Discover: `python3 install.py --list` / `--list-agents` / `--list-by-category`

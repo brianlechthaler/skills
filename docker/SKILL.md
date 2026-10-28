@@ -111,7 +111,11 @@ Mount host paths **read-only** (`:ro`). Only mount what the task requires.
 | Azure | `-v "$HOME/.azure:/root/.azure:ro"` |
 | npm/yarn/pip tokens | `-v "$HOME/.npm:/root/.npm:ro"` or env file mount |
 | Generic env secrets | `--env-file .env` (file stays on host, not in image) |
-| Docker socket (build images in CI container) | `-v /var/run/docker.sock:/var/run/docker.sock` |
+
+Do **not** mount the host Docker control socket into a container unless the task
+is specifically Docker-out-of-Docker CI and the risk is accepted — that grant is
+equivalent to root on the host. Prefer `docker build` / `docker compose` on the
+host, or a dedicated builder service without socket bind-mounts.
 
 Example with credentials:
 
@@ -187,9 +191,9 @@ When working in a containerized project:
 
 | Avoid | Do instead |
 |-------|------------|
-| `curl \| bash` on host for runtimes | Use an official base image |
+| Piping a remote installer into a host shell for runtimes | Use an official base image |
 | `brew install`, `apt install` on host for project deps | Add to Dockerfile |
-| Copying `.ssh/id_rsa` into repo or image | Bind-mount `:ro` at runtime |
+| Baking private SSH key material into the repo or image | Bind-mount the SSH agent or `~/.ssh` `:ro` at runtime |
 | "Just run it locally this once" | One-off `docker run` with same mounts |
 | Leaving stopped test containers around | Use `--rm`; run cleanup before ending the task |
 | Polling host `node -v` / `python --version` | Check versions inside the container |

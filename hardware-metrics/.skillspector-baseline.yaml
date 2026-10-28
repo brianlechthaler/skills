@@ -1,0 +1,10 @@
+# Reviewed SkillSpector suppressions for hardware-metrics.
+# Applied in CI via scripts/run_skillspector.py --use-shipped-baseline.
+version: 2
+scanner_version: "2.13.1"
+rules:
+  - id: "AE1"
+    reason: >-
+      examples.md hits SkillSpector static parse span limits on long platform
+      command recipes; this is a coverage gap in the scanner, not analysis
+      evasion. Recipes are first-party ops documentation reviewed for this skill.
