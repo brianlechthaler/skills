@@ -1,0 +1,88 @@
+name: SkillSpector
+
+# Static security scan of every skill directory with NVIDIA SkillSpector.
+# Skills live as top-level */SKILL.md directories (not under skills/), and
+# SkillSpector's --recursive mode caps at 32 skills, so CI scans each skill
+# individually via scripts/run_skillspector.py.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: Fail the job when any skill risk score exceeds 50
+        type: boolean
+        default: false
+
+concurrency:
+  group: skillspector-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Pin to a SkillSpector release tag for reproducible CI.
+  SKILLSPECTOR_REF: v2.13.1
+
+jobs:
+  scan:
+    name: Scan all skills
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install SkillSpector
+        run: |
+          set -euo pipefail
+          python3 -m pip install --user --quiet \
+            "git+https://github.com/NVIDIA/SkillSpector.git@${SKILLSPECTOR_REF}"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          skillspector --version
+
+      - name: Scan all skills
+        id: scan
+        run: |
+          set -euo pipefail
+          mkdir -p skillspector-results
+          extra=()
+          # Push/PR stay report-first so existing high-risk skills do not block
+          # every change; enable the risk gate from workflow_dispatch when desired.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.gate }}" = "true" ]; then
+            extra+=(--gate)
+          fi
+          python3 scripts/run_skillspector.py \
+            --root . \
+            --output-dir skillspector-results \
+            --summary-file "${GITHUB_STEP_SUMMARY}" \
+            "${extra[@]}"
+
+      - name: Upload SkillSpector reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: skillspector-results
+          path: skillspector-results/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload SARIF to code scanning
+        if: always() && hashFiles('skillspector-results/skillspector.sarif') != ''
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: skillspector-results/skillspector.sarif
+          category: skillspector
