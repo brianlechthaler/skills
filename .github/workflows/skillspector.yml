@@ -11,11 +11,6 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-    inputs:
-      gate:
-        description: Fail the job when any skill risk score exceeds 50
-        type: boolean
-        default: false
 
 concurrency:
   group: skillspector-${{ github.ref }}
@@ -58,17 +53,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p skillspector-results
-          extra=()
-          # Push/PR stay report-first so existing high-risk skills do not block
-          # every change; enable the risk gate from workflow_dispatch when desired.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.gate }}" = "true" ]; then
-            extra+=(--gate)
-          fi
+          # Fail the job when any skill scores risk > 50 (SkillSpector
+          # DO_NOT_INSTALL). Artifacts/SARIF still upload via if: always().
           python3 scripts/run_skillspector.py \
             --root . \
             --output-dir skillspector-results \
             --summary-file "${GITHUB_STEP_SUMMARY}" \
-            "${extra[@]}"
+            --gate
 
       - name: Upload SkillSpector reports
         if: always()
